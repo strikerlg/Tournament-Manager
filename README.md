@@ -8,6 +8,16 @@
 ### This list can be constantly updated to include more development steps.
 
 * Write the DB structure -> update a dump file for each change.
+    * Include Users table.
+    * Include Players table.
+    * Include tournaments table.
+    * Include matches table.
+    * Include rankings table.
+    * Prevent rematches from players.
+    * Design a bye(skipped round).
+    * Design support for draws.
+    * Design support for OMW (Opponent Match Wins).
+    * Design support for more than one tournament.
 * Install PHP-Lumen.
 * Write the migrations inside PHP-Lumen.
 * Manage tests folder structure.
