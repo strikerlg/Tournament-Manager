@@ -1,6 +1,6 @@
 # Tournament-Manager
 
-* Intro to Relational Databases assignment solution using PHP-Lumen(https://lumen.laravel.com/).
+* Intro to Relational Databases assignment(Swiss tornament manager) solution using PHP-Lumen(https://lumen.laravel.com/).
 * Link to course: https://www.udacity.com/courses/ud197
 
 ## TODOS:
