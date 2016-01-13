@@ -6,7 +6,7 @@
 echo "Restoring psql dump of the swiss DB into psql."
 
 if [ -f dump/swiss.* ]; then
-    psql swiss < dump/swiss
+    sudo -u postgres psql --username=postgres swiss < dump/swiss.sql
 else
     echo "The dump file wasn't found."
 fi

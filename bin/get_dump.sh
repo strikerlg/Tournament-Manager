@@ -5,6 +5,4 @@
 
 echo "Generating psql dump of the swiss DB."
 
-mkdir -p dump
-
-pg_dump swiss > dump/swiss
+sudo -u postgres pg_dump swiss > dump/swiss.sql
