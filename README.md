@@ -10,7 +10,7 @@
 * Write the DB structure -> update a dump file for each change.
     * Include Users table -> DONE
     * Include Players table -> DONE
-    * Include Games table
+    * Include Games table -> DONE
     * Include tournaments table.
     * Include matches table.
     * Include rankings table.
