@@ -8,8 +8,8 @@
 ### This list can be constantly updated to include more development steps.
 
 * Write the DB structure -> update a dump file for each change.
-    * Include Users table.
-    * Include Players table.
+    * Include Users table.          X
+    * Include Players table.        X
     * Include tournaments table.
     * Include matches table.
     * Include rankings table.
