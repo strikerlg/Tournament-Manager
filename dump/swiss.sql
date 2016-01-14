@@ -99,6 +99,78 @@ ALTER SEQUENCE players_id_seq OWNED BY players.id;
 
 
 --
+-- Name: tournaments; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE tournaments (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    begin date DEFAULT now() NOT NULL,
+    finish date NOT NULL,
+    created_at date DEFAULT now() NOT NULL,
+    updated_at date DEFAULT now() NOT NULL,
+    has_ended boolean DEFAULT false NOT NULL
+);
+
+
+ALTER TABLE tournaments OWNER TO postgres;
+
+--
+-- Name: tournaments_games; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE tournaments_games (
+    id integer NOT NULL,
+    game_id integer,
+    tournament_id integer
+);
+
+
+ALTER TABLE tournaments_games OWNER TO postgres;
+
+--
+-- Name: tournaments_games_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE tournaments_games_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE tournaments_games_id_seq OWNER TO postgres;
+
+--
+-- Name: tournaments_games_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE tournaments_games_id_seq OWNED BY tournaments_games.id;
+
+
+--
+-- Name: tournaments_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE tournaments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE tournaments_id_seq OWNER TO postgres;
+
+--
+-- Name: tournaments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE tournaments_id_seq OWNED BY tournaments.id;
+
+
+--
 -- Name: users; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -153,6 +225,20 @@ ALTER TABLE ONLY players ALTER COLUMN id SET DEFAULT nextval('players_id_seq'::r
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
+ALTER TABLE ONLY tournaments ALTER COLUMN id SET DEFAULT nextval('tournaments_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY tournaments_games ALTER COLUMN id SET DEFAULT nextval('tournaments_games_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
 ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
 
 
@@ -187,6 +273,36 @@ SELECT pg_catalog.setval('players_id_seq', 1, false);
 
 
 --
+-- Data for Name: tournaments; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY tournaments (id, name, begin, finish, created_at, updated_at, has_ended) FROM stdin;
+\.
+
+
+--
+-- Data for Name: tournaments_games; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY tournaments_games (id, game_id, tournament_id) FROM stdin;
+\.
+
+
+--
+-- Name: tournaments_games_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('tournaments_games_id_seq', 1, false);
+
+
+--
+-- Name: tournaments_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('tournaments_id_seq', 1, false);
+
+
+--
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -218,6 +334,22 @@ ALTER TABLE ONLY players
 
 
 --
+-- Name: tournament_game_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY tournaments_games
+    ADD CONSTRAINT tournament_game_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: tournaments_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY tournaments
+    ADD CONSTRAINT tournaments_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -231,6 +363,22 @@ ALTER TABLE ONLY users
 
 ALTER TABLE ONLY players
     ADD CONSTRAINT players_user_id_fkey FOREIGN KEY (user_id) REFERENCES users(id);
+
+
+--
+-- Name: tournament_game_game_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY tournaments_games
+    ADD CONSTRAINT tournament_game_game_id_fkey FOREIGN KEY (game_id) REFERENCES games(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: tournament_game_tournament_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY tournaments_games
+    ADD CONSTRAINT tournament_game_tournament_id_fkey FOREIGN KEY (tournament_id) REFERENCES tournaments(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
