@@ -175,6 +175,41 @@ ALTER SEQUENCE players_id_seq OWNED BY players.id;
 
 
 --
+-- Name: rankings; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE rankings (
+    id integer NOT NULL,
+    player_id integer NOT NULL,
+    tournament_id integer NOT NULL,
+    score integer DEFAULT 0 NOT NULL
+);
+
+
+ALTER TABLE rankings OWNER TO postgres;
+
+--
+-- Name: rankings_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE rankings_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE rankings_id_seq OWNER TO postgres;
+
+--
+-- Name: rankings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE rankings_id_seq OWNED BY rankings.id;
+
+
+--
 -- Name: tournaments; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -316,6 +351,13 @@ ALTER TABLE ONLY players ALTER COLUMN id SET DEFAULT nextval('players_id_seq'::r
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
+ALTER TABLE ONLY rankings ALTER COLUMN id SET DEFAULT nextval('rankings_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
 ALTER TABLE ONLY tournaments ALTER COLUMN id SET DEFAULT nextval('tournaments_id_seq'::regclass);
 
 
@@ -391,6 +433,21 @@ COPY players (id, nickname, user_id) FROM stdin;
 --
 
 SELECT pg_catalog.setval('players_id_seq', 1, false);
+
+
+--
+-- Data for Name: rankings; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY rankings (id, player_id, tournament_id, score) FROM stdin;
+\.
+
+
+--
+-- Name: rankings_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('rankings_id_seq', 1, false);
 
 
 --
@@ -471,6 +528,14 @@ ALTER TABLE ONLY players
 
 
 --
+-- Name: rankings_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY rankings
+    ADD CONSTRAINT rankings_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: tournament_game_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -548,6 +613,22 @@ ALTER TABLE ONLY matches
 
 ALTER TABLE ONLY players
     ADD CONSTRAINT players_user_id_fkey FOREIGN KEY (user_id) REFERENCES users(id);
+
+
+--
+-- Name: rankings_player_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY rankings
+    ADD CONSTRAINT rankings_player_id_fkey FOREIGN KEY (player_id) REFERENCES players(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: rankings_tournament_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY rankings
+    ADD CONSTRAINT rankings_tournament_id_fkey FOREIGN KEY (tournament_id) REFERENCES tournaments(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
