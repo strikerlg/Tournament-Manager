@@ -11,7 +11,7 @@
     * Include Users table -> DONE
     * Include Players table -> DONE
     * Include Games table -> DONE
-    * Include Tournaments table.
+    * Include Tournaments table. -> DONE
     * Include Administrators table.
     * Include matches table.
     * Include rankings table.
