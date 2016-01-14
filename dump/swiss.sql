@@ -144,7 +144,8 @@ CREATE TABLE tournaments (
     finish date NOT NULL,
     created_at date DEFAULT now() NOT NULL,
     updated_at date DEFAULT now() NOT NULL,
-    has_ended boolean DEFAULT false NOT NULL
+    has_ended boolean DEFAULT false NOT NULL,
+    created_by integer NOT NULL
 );
 
 
@@ -333,7 +334,7 @@ SELECT pg_catalog.setval('players_id_seq', 1, false);
 -- Data for Name: tournaments; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY tournaments (id, name, begin, finish, created_at, updated_at, has_ended) FROM stdin;
+COPY tournaments (id, name, begin, finish, created_at, updated_at, has_ended, created_by) FROM stdin;
 \.
 
 
@@ -452,6 +453,14 @@ ALTER TABLE ONLY tournaments_games
 
 ALTER TABLE ONLY tournaments_games
     ADD CONSTRAINT tournament_game_tournament_id_fkey FOREIGN KEY (tournament_id) REFERENCES tournaments(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: tournaments_created_by_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY tournaments
+    ADD CONSTRAINT tournaments_created_by_fkey FOREIGN KEY (created_by) REFERENCES administrators(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
