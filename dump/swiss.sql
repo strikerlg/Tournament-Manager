@@ -100,6 +100,47 @@ ALTER SEQUENCE games_id_seq OWNED BY games.id;
 
 
 --
+-- Name: matches; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE matches (
+    id integer NOT NULL,
+    tournament_id integer NOT NULL,
+    first_player_id integer NOT NULL,
+    second_player_id integer NOT NULL,
+    winner integer NOT NULL,
+    begin date DEFAULT now(),
+    finish date NOT NULL,
+    created_at date DEFAULT now(),
+    updated_at date DEFAULT now(),
+    created_by integer NOT NULL
+);
+
+
+ALTER TABLE matches OWNER TO postgres;
+
+--
+-- Name: matches_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE matches_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE matches_id_seq OWNER TO postgres;
+
+--
+-- Name: matches_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE matches_id_seq OWNED BY matches.id;
+
+
+--
 -- Name: players; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -261,6 +302,13 @@ ALTER TABLE ONLY games ALTER COLUMN id SET DEFAULT nextval('games_id_seq'::regcl
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
+ALTER TABLE ONLY matches ALTER COLUMN id SET DEFAULT nextval('matches_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
 ALTER TABLE ONLY players ALTER COLUMN id SET DEFAULT nextval('players_id_seq'::regclass);
 
 
@@ -313,6 +361,21 @@ COPY games (id, name, created_at, updated_at) FROM stdin;
 --
 
 SELECT pg_catalog.setval('games_id_seq', 1, false);
+
+
+--
+-- Data for Name: matches; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY matches (id, tournament_id, first_player_id, second_player_id, winner, begin, finish, created_at, updated_at, created_by) FROM stdin;
+\.
+
+
+--
+-- Name: matches_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('matches_id_seq', 1, false);
 
 
 --
@@ -392,6 +455,14 @@ ALTER TABLE ONLY games
 
 
 --
+-- Name: matches_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY matches
+    ADD CONSTRAINT matches_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: players_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -429,6 +500,46 @@ ALTER TABLE ONLY users
 
 ALTER TABLE ONLY administrators
     ADD CONSTRAINT administrators_user_id_fkey FOREIGN KEY (user_id) REFERENCES users(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: matches_created_by_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY matches
+    ADD CONSTRAINT matches_created_by_fkey FOREIGN KEY (created_by) REFERENCES administrators(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: matches_first_player_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY matches
+    ADD CONSTRAINT matches_first_player_id_fkey FOREIGN KEY (first_player_id) REFERENCES players(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: matches_second_player_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY matches
+    ADD CONSTRAINT matches_second_player_id_fkey FOREIGN KEY (second_player_id) REFERENCES players(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: matches_tournament_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY matches
+    ADD CONSTRAINT matches_tournament_id_fkey FOREIGN KEY (tournament_id) REFERENCES tournaments(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: matches_winner_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY matches
+    ADD CONSTRAINT matches_winner_fkey FOREIGN KEY (winner) REFERENCES players(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
