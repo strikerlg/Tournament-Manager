@@ -13,7 +13,7 @@
     * Include Games table -> DONE
     * Include Tournaments table. -> DONE
     * Include Administrators table. -> DONE
-    * Include matches table.
+    * Include matches table. -> DONE
     * Include rankings table.
     * Include UML Graph for the DB Design.
     * Prevent rematches from players.
