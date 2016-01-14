@@ -30,6 +30,41 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
+-- Name: administrators; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE administrators (
+    id integer NOT NULL,
+    user_id integer NOT NULL,
+    created_at date DEFAULT now() NOT NULL,
+    updated_at date DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE administrators OWNER TO postgres;
+
+--
+-- Name: administrators_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE administrators_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE administrators_id_seq OWNER TO postgres;
+
+--
+-- Name: administrators_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE administrators_id_seq OWNED BY administrators.id;
+
+
+--
 -- Name: games; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -211,6 +246,13 @@ ALTER SEQUENCE users_id_seq OWNED BY users.id;
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
+ALTER TABLE ONLY administrators ALTER COLUMN id SET DEFAULT nextval('administrators_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
 ALTER TABLE ONLY games ALTER COLUMN id SET DEFAULT nextval('games_id_seq'::regclass);
 
 
@@ -240,6 +282,21 @@ ALTER TABLE ONLY tournaments_games ALTER COLUMN id SET DEFAULT nextval('tourname
 --
 
 ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
+
+
+--
+-- Data for Name: administrators; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY administrators (id, user_id, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Name: administrators_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('administrators_id_seq', 1, false);
 
 
 --
@@ -318,6 +375,14 @@ SELECT pg_catalog.setval('users_id_seq', 1, false);
 
 
 --
+-- Name: administrators_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY administrators
+    ADD CONSTRAINT administrators_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: games_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -355,6 +420,14 @@ ALTER TABLE ONLY tournaments
 
 ALTER TABLE ONLY users
     ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: administrators_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY administrators
+    ADD CONSTRAINT administrators_user_id_fkey FOREIGN KEY (user_id) REFERENCES users(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
