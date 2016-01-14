@@ -14,13 +14,13 @@
     * Include Tournaments table. -> DONE
     * Include Administrators table. -> DONE
     * Include matches table. -> DONE
-    * Include rankings table.
+    * Include rankings table. -> DONE
     * Include UML Graph for the DB Design.
     * Prevent rematches from players.
     * Design a bye(skipped round).
     * Design support for draws.
     * Design support for OMW (Opponent Match Wins).
-    * Design support for more than one tournament.
+    * Design support for more than one tournament. -> DONE
 * Install PHP-Lumen.
 * Write the migrations inside PHP-Lumen.
 * Manage tests folder structure.
