@@ -15,6 +15,7 @@
     * Include Administrators table. -> DONE
     * Include matches table.
     * Include rankings table.
+    * Include UML Graph for the DB Design.
     * Prevent rematches from players.
     * Design a bye(skipped round).
     * Design support for draws.
