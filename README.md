@@ -17,7 +17,7 @@
     * Include rankings table. -> DONE
     * Prevent rematches from players.
     * Design a bye(skipped round).
-    * Design support for draws.
+    * Design support for draws. -> DONE
     * Design support for OMW (Opponent Match Wins).
     * Design support for more than one tournament. -> DONE
 * Install PHP-Lumen.
