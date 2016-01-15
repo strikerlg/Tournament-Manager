@@ -291,7 +291,6 @@ CREATE TABLE users (
     name character varying(255) NOT NULL,
     email character varying(255) NOT NULL,
     password character varying(60) NOT NULL,
-    birthdate date,
     remember_token character varying(100)
 );
 
@@ -484,7 +483,7 @@ SELECT pg_catalog.setval('tournaments_id_seq', 1, false);
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY users (id, name, email, password, birthdate, remember_token) FROM stdin;
+COPY users (id, name, email, password, remember_token) FROM stdin;
 \.
 
 
