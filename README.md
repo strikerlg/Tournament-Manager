@@ -20,7 +20,7 @@
     * Design support for draws. -> DONE
     * Design support for OMW (Opponent Match Wins).
     * Design support for more than one tournament. -> DONE
-* Install PHP-Lumen.
+* Install PHP-Lumen. -> DONE
 * Write the migrations inside PHP-Lumen.
 * Manage tests folder structure.
 * Write integration tests for the repositories.
