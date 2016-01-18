@@ -7,7 +7,7 @@ echo "Restarting swiss test sqlite db."
 
 composer dump-autoload
 
-rm    database/testing_db.sqlite
-touch database/testing_db.sqlite
+rm    database/database.sqlite
+touch database/database.sqlite
 
 php artisan migrate --env=testing --database=sqlite --force
