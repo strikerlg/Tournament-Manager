@@ -11,4 +11,17 @@ class TestCase extends Laravel\Lumen\Testing\TestCase
     {
         return require __DIR__.'/../bootstrap/app.php';
     }
+
+    /**
+     *
+     * Configures the database used by the
+     * Integration tests.
+     * 
+     */
+    public function configureDatabase()
+    {
+        // TODO: Configure the sqlite db Connection to be used.
+        return null;
+    }
+
 }
