@@ -12,9 +12,11 @@ class CreateRankingsTable extends Migration
      */
     public function up()
     {
-        Schema::table('rankings', function (Blueprint $table) {
+        Schema::create('rankings', function (Blueprint $table) {
             $table->increments('id');
-            $table->foreign('players_id')->references('id')->on('players');
+            $table->integer('player_id');
+            $table->foreign('player_id')->references('id')->on('players');
+            $table->integer('tournament_id');
             $table->foreign('tournament_id')->references('id')->on('tournaments');
             $table->integer('score')->default(0);
             $table->timestamps();

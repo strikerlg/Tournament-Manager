@@ -12,9 +12,11 @@ class CreateTournamentsGamesTable extends Migration
      */
     public function up()
     {
-        Schema::table('tournaments_games', function (Blueprint $table) {
+        Schema::create('tournaments_games', function (Blueprint $table) {
             $table->increments('id');
-            $table->foreign('game_id')->refences('id')->on('games');
+            $table->integer('game_id');
+            $table->foreign('game_id')->references('id')->on('games');
+            $table->integer('tournament_id');
             $table->foreign('tournament_id')->references('id')->on('tournaments');
             $table->timestamps();
         });

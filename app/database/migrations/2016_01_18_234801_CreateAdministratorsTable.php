@@ -12,9 +12,10 @@ class CreateAdministratorsTable extends Migration
      */
     public function up()
     {
-        Schema::table('administrators', function(Blueprint $table) {
+        Schema::create('administrators', function(Blueprint $table) {
             $table->increments('id');
             $table->string('nickname');
+            $table->integer('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });

@@ -8,4 +8,4 @@ composer dumpautoload
 sudo -u postgres psql -c "DROP DATABASE swiss;"
 sudo -u postgres psql -c "CREATE DATABASE swiss OWNER homestead;"
 
-php artisan migrate
+php artisan migrate --verbose
