@@ -18,7 +18,7 @@ class CreateTournamentsTable extends Migration
             $table->date('begin')->default(Carbon\Carbon::now());
             $table->data('finish')->default(Carbon\Carbon::now());
             $table->boolean('has_ended')->default(false);
-            $table->foreign('created_by')->references('id')->on('administrators');
+            $table->foreign('created_by')->references('id')->on('administrators')->onDelete('cascade');
         });
     }
 
