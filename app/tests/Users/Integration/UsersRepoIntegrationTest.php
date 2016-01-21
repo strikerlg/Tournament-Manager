@@ -48,10 +48,11 @@ class UsersRepoIntegrationTest extends \TestCase
     {
         $user = $this->repo->addUser(
             'user@mail.com',
+            'user name',
             'pass'
         );
         $this->assertNotNull($user);
-        $this->assertInstanceOf($user, 'App\Models\User');
+        $this->assertInstanceOf('App\Models\User', $user);
         $this->seeInDatabase('users', ['user@mail.com']);
     }
 

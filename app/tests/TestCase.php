@@ -13,15 +13,21 @@ class TestCase extends Laravel\Lumen\Testing\TestCase
     }
 
     /**
-     *
-     * Configures the database used by the
-     * Integration tests.
-     * 
+     * Setup method
      */
-    public function configureDatabase()
+    public function setup()
     {
-        // TODO: Configure the sqlite db Connection to be used.
-        return null;
+        parent::setup();
+        // $this->beginTransaction();
     }
 
+    /**
+     * Parent method
+     */
+    public function teardown()
+    {
+        parent::teardown();
+        // $this->endTransaction();
+    }
 }
+

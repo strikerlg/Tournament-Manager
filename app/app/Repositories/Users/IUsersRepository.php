@@ -12,11 +12,16 @@ interface IUsersRepository {
      * Adds an user entity in the DB.
      *
      * @param str $email
-     * @param str $password 
+     * @param str $name
+     * @param str $password
      *
      * @return User
      */
-    public function addUser($email, $password);
+    public function addUser(
+        $email,
+        $name,
+        $password
+    );
 
 }
 

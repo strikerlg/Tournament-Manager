@@ -14,14 +14,23 @@ class UsersRepository implements IUsersRepository
      * Adds an user into the DB
      *
      * @param str $email
+     * @param str $name
      * @param str $password
      *
      * @return User
      */
-    public function addUser($email, $password)
-    {
-        // ...
-        return null;
+    public function addUser(
+        $email,
+        $name,
+        $password
+    ) {
+        $user = new User();
+        $user->name = $name;
+        $user->email = $email;
+        $user->password = $password;
+        $user->save();
+
+        return $user;
     }
 
 }
