@@ -21,7 +21,7 @@ class UsersRepoIntegrationTest extends \TestCase
         parent::setup();
 
         $this->repo = $this->app->make(
-            'App\Repositories\IUsersRepository'
+            'App\Repositories\Users\IUsersRepository'
         );
     }
 

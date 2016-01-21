@@ -13,6 +13,8 @@ interface IUsersRepository {
      *
      * @param str $email
      * @param str $password 
+     *
+     * @return User
      */
     public function addUser($email, $password);
 
