@@ -7,7 +7,7 @@ use App\Models\User;
 /**
  * Implementation of User repo.
  */
-class UsersRepository implements IUserRepository
+class UsersRepository implements IUsersRepository
 {
 
     /**

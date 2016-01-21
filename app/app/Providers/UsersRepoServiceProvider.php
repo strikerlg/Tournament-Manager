@@ -18,8 +18,8 @@ class UsersRepoServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind(
-            'App\\Repositories\\Users\\IUsersRepository,
-            'App\\Repositories\\Users\\UsersRepository
+            'App\\Repositories\\Users\\IUsersRepository',
+            'App\\Repositories\\Users\\UsersRepository'
         );
     }
 
