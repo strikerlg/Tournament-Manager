@@ -53,7 +53,7 @@ class UsersRepoIntegrationTest extends \TestCase
         );
         $this->assertNotNull($user);
         $this->assertInstanceOf('App\Models\User', $user);
-        $this->seeInDatabase('users', ['user@mail.com']);
+        $this->seeInDatabase('users', ['email' => 'user@mail.com']);
     }
 
 }

@@ -1,7 +1,12 @@
 <?php
 
+use Laravel\Lumen\Testing\DatabaseTransactions;
+
 class TestCase extends Laravel\Lumen\Testing\TestCase
 {
+
+    use DatabaseTransactions;
+
     /**
      * Creates the application.
      *
@@ -18,7 +23,6 @@ class TestCase extends Laravel\Lumen\Testing\TestCase
     public function setup()
     {
         parent::setup();
-        // $this->beginTransaction();
     }
 
     /**
@@ -27,7 +31,7 @@ class TestCase extends Laravel\Lumen\Testing\TestCase
     public function teardown()
     {
         parent::teardown();
-        // $this->endTransaction();
     }
+
 }
 
