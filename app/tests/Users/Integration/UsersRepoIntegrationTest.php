@@ -5,8 +5,34 @@ namespace Tests\Users\Integration;
 /**
  * Class for testing the users repo.
  */
-class UsersRepoIntegrationTest extends TestCase
+class UsersRepoIntegrationTest extends \TestCase
 {
+
+    /**
+     * @var IUsersRepository
+     */
+    private $repo = null;
+
+    /**
+     * Setup method
+     */
+    public function setup()
+    {
+        parent::setup();
+
+        $this->repo = $this->app->make(
+            'App\Repositories\IUsersRepository'
+        );
+    }
+
+    /**
+     * Teardown method
+     */
+    public function teardown()
+    {
+        $this->repo = null;
+    }
+
     /**
      * Basic is working assertion.
      */
