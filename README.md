@@ -23,6 +23,14 @@
 * Install PHP-Lumen. -> DONE
 * Write the migrations inside PHP-Lumen. -> DONE
 * Manage tests folder structure. -> DOING ...
+* Add testDummy factories for the model classes.
+    * Add factories for the User model.
+    * Add factories for the Player model.
+    * Add factories for the Administrator model.
+    * Add factories for the Game model.
+    * Add factories for the Tournament model. 
+    * Add factories for the Match model.
+    * Add factories for the Rank model.
 * Write integration tests for the repositories. -> DOING ...
     * Add tests for the users repository. -> DONE
     * Add tests for the players repository.
