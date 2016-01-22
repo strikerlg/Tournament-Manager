@@ -39,7 +39,7 @@
     * Add tests for the tournaments repository.
     * Add tests for the matches repository.
     * Add tests for the rankings repository.
-* Write model factories for the integration tests. -> DOING ...
+* Write model classes. -> DOING ...
     * Add User model. -> DONE
     * Add Player model.
     * Add Administrator model.
