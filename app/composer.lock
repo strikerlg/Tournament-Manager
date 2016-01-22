@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "eb888ea84a45675db2bc1f4dd4da889d",
-    "content-hash": "be56596918ef42a15b75d881aaedbd55",
+    "hash": "b317e1802f36fcb40b1323da534935de",
+    "content-hash": "c933344da93cfbcba69e07f5311cfd62",
     "packages": [
         {
             "name": "doctrine/inflector",
@@ -2203,6 +2203,58 @@
                 "fixtures"
             ],
             "time": "2015-05-29 06:29:14"
+        },
+        {
+            "name": "laracasts/testdummy",
+            "version": "2.3.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laracasts/TestDummy.git",
+                "reference": "ba986a66b6f4a1e149355357353af3072d5521ee"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laracasts/TestDummy/zipball/ba986a66b6f4a1e149355357353af3072d5521ee",
+                "reference": "ba986a66b6f4a1e149355357353af3072d5521ee",
+                "shasum": ""
+            },
+            "require": {
+                "fzaninotto/faker": "~1.4",
+                "illuminate/support": "~4.0|~5.0",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "illuminate/database": "~4.0|~5.0",
+                "phpspec/phpspec": "~2.0",
+                "phpunit/phpunit": "~4.7@dev"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Laracasts\\TestDummy\\": "src/"
+                },
+                "files": [
+                    "src/functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeffrey Way",
+                    "email": "jeffrey@laracasts.com"
+                }
+            ],
+            "description": "Easy test stubs",
+            "keywords": [
+                "factorygirl",
+                "laravel",
+                "stubs",
+                "testing"
+            ],
+            "time": "2015-04-27 15:56:12"
         },
         {
             "name": "phpdocumentor/reflection-docblock",
