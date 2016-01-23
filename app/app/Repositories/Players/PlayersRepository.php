@@ -8,7 +8,7 @@ use App\Models\Player;
 /**
  * Implementation for the IPlayers repo.
  */
-class PlayersRepository implements IPlayerRepository
+class PlayersRepository implements IPlayersRepository
 {
     /**
      * Adds a player into the DB.
