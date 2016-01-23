@@ -2,6 +2,7 @@
 
 namespace Tests\Players\Integration;
 
+use App\Models\Player;
 use Laracasts\TestDummy\Factory;
 
 /**
@@ -48,7 +49,9 @@ class PlayersRepoIntegrationTest extends \TestCase
      */
     public function testRepoAddPlayerSuccessAddition()
     {
+        $user = Factory::create('App\\Models\\User');
         $player = $this->repo->addPlayer(
+            $user,
             'nickname'
         );
         $this->assertNotNull($player);
@@ -72,8 +75,11 @@ class PlayersRepoIntegrationTest extends \TestCase
     public function testRepoRemovePlayerSuccessRemoval()
     {
         $player = Factory::create('App\\Models\\Player');
-        $this->repo->removePlayer(
+        $success = $this->repo->removePlayer(
             $player->nickname
+        );
+        $this->assertTrue(
+            $success
         );
         $this->assertNull(
             Player::find($player->id)

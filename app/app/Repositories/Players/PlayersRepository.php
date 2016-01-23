@@ -22,7 +22,12 @@ class PlayersRepository implements IPlayersRepository
         User $user,
         $nickname
     ) {
-        return null;
+        $player = new Player();
+        $player->user_id = $user->id;
+        $player->nickname = $nickname;
+        $player->save();
+
+        return $player;
     }
 
     /**
@@ -37,7 +42,8 @@ class PlayersRepository implements IPlayersRepository
     public function removePlayer(
         $nickname
     ) {
-        return false;
+        return Player::where('nickname', $nickname)
+            ->firstOrFail()->delete();
     }
 }
 
