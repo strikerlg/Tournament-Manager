@@ -31,4 +31,14 @@ class User extends Model implements
     protected $hidden = [
         'password',
     ];
+
+    /**
+     * The player related to this User.
+     *
+     * @return Relation
+     */
+    public function player()
+    {
+        return $this->hasOne('App\\Models\\Player');
+    }
 }
