@@ -85,5 +85,15 @@ class PlayersRepoIntegrationTest extends \TestCase
             Player::find($player->id)
         );
     }
+
+    /**
+     * Tests if a ModelNotFoundException is thrown.
+     *
+     * @expectedException Illuminate\Database\Eloquent\ModelNotFoundException
+     */
+    public function testRepoRemovePlayerFailureNotFound()
+    {
+        $this->repo->removePlayer('test');
+    }
 }
 
