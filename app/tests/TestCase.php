@@ -33,5 +33,12 @@ class TestCase extends Laravel\Lumen\Testing\TestCase
         parent::teardown();
     }
 
+    /**
+     * Test is working.
+     */
+    public function testIsWorking()
+    {
+        $this->assertTrue(true);
+    }
 }
 
