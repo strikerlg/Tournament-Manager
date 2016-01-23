@@ -2,6 +2,8 @@
 
 namespace Tests\Players\Integration;
 
+use Laracasts\TestDummy\Factory;
+
 /**
  * Class used to test the Players repo tests.
  */
@@ -44,9 +46,9 @@ class PlayersRepoIntegrationTest extends \TestCase
      */
     public function testRepoRemovePlayerSuccessRemoval()
     {
-        $player = Player::add();  // this should be added using a helper factory.
+        $player = Factory::create('App\\Models\\Player');
         $this->repo->removePlayer(
-            'player_nickname'
+            $player->nickname
         );
         $this->assertNull(
             Player::find($player->id)
