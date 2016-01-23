@@ -22,5 +22,18 @@ interface IPlayersRepository
         User $user,
         $nickname
     );
+
+    /**
+     * Removes the specified player.
+     *
+     * @param str $nickname
+     *
+     * @throws ModelNotFoundException
+     *
+     * @return bool
+     */
+    public function removePlayer(
+        $nickname
+    );
 }
 
