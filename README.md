@@ -34,7 +34,7 @@
 * Write integration tests for the repositories. -> DOING ...
     * Add tests for the users repository. -> DONE
     * Add tests for the players repository. -> DONE
-    * Add tests for the administrators repository.
+    * Add tests for the administrators repository. -> DONE
     * Add tests for the games repository.
     * Add tests for the tournaments repository.
     * Add tests for the matches repository.
@@ -48,8 +48,8 @@
     * Add Match model.
     * Add Rank model.
 * Write the repositories. -> DOING ...
-    * Add Users repo. -> DONE.
-    * Add Players repo. -> DONE.
+    * Add Users repo. -> DONE
+    * Add Players repo. -> DONE
     * Add Administrators repo.
     * Add Games repo.
     * Add tournaments repo.
