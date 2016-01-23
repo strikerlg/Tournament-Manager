@@ -49,7 +49,7 @@
     * Add Rank model.
 * Write the repositories. -> DOING ...
     * Add Users repo. -> DONE.
-    * Add Players repo.
+    * Add Players repo. -> DONE.
     * Add Administrators repo.
     * Add Games repo.
     * Add tournaments repo.
