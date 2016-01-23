@@ -11,6 +11,31 @@ class PlayersRepoIntegrationTest extends \TestCase
 {
 
     /**
+     * @var IPlayerRepository
+     */
+    private $repo;
+
+    /**
+     * Setup method
+     */
+    public function setup()
+    {
+        parent::setup();
+        $this->repo = $this->app->make(
+            'App\\Repositories\\Players\\IPlayersRepository'
+        );
+    }
+
+    /**
+     * Teardown method
+     */
+    public function teardown()
+    {
+        $this->repo = null;
+        parent::teardown();
+    }
+
+    /**
      * Basic is working test.
      */
     public function testIsWorking()
@@ -41,7 +66,7 @@ class PlayersRepoIntegrationTest extends \TestCase
         );
     }
 
-    /**  
+    /**
      * Tests if the remove function works correctly.
      */
     public function testRepoRemovePlayerSuccessRemoval()

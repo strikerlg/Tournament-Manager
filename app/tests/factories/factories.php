@@ -8,6 +8,6 @@ $factory('App\\Models\\User', [
 
 $factory('App\\Models\\Player', [
     'nickname' => $faker->name,
-    'user_id' => 'factory:User',
+    'user_id' => 'factory:App\\Models\\User',
 ]);
 
