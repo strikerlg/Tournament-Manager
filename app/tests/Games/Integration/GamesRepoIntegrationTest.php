@@ -78,6 +78,8 @@ class GamesRepoIntegrationTest extends \TestCase
      * Tests if the remove throws a modelNotFound
      * Exception when passing an inexistent
      * game id.
+     *
+     * @expectedException Illuminate\Database\Eloquent\ModelNotFoundException
      */
     public function testRepoRemoveGameNotFound()
     {
