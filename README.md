@@ -51,7 +51,7 @@
     * Add Users repo. -> DONE
     * Add Players repo. -> DONE
     * Add Administrators repo. -> DONE
-    * Add Games repo.
+    * Add Games repo. -> DOING ...
     * Add tournaments repo.
     * Add Matches repo.
     * Add Rankings repo.
