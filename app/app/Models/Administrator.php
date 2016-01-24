@@ -31,5 +31,16 @@ class Administrator extends Model
     {
         return $this->belongsTo('App\\Models\\User');
     }
+
+    /**
+     * One to Many relationship with
+     * the Tournaments model.
+     *
+     * @return Relation
+     */
+    public function tournaments()
+    {
+        return $this->hasMany('App\\Models\\Tournament');
+    }
 }
 
