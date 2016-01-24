@@ -3,7 +3,7 @@
 namespace App\Repositories\Administrators;
 
 use App\Models\User;
-use App\Models\Administrators;
+use App\Models\Administrator;
 
 /**
  * Administrators Repository implementation.
@@ -22,7 +22,12 @@ class AdministratorsRepository implements IAdministratorsRepository
         User $user,
         $nickname
     ) {
-        return null;
+        $admin = new Administrator();
+        $admin->user_id = $user->id;
+        $admin->nickname = $nickname;
+        $admin->save();
+
+        return $admin;
     }
 
     /**
@@ -35,7 +40,9 @@ class AdministratorsRepository implements IAdministratorsRepository
     public function removeAdministrator(
         $nickname
     ) {
-        return false;
+        return Administrator::where('nickname', $nickname)
+            ->firstOrFail()
+            ->delete();
     }
 }
 

@@ -3,6 +3,8 @@
 namespace Tests\Administrators\Integration;
 
 use Laracasts\TestDummy\Factory;
+use App\Models\User;
+use App\Models\Administrator;
 
 /**
  * Test for the admin repo.
