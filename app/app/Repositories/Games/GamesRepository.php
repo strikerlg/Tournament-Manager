@@ -19,7 +19,11 @@ class GamesRepository
     public function addGame(
         $name
     ) {
-        return null;
+        $game = new Game();
+        $game->name = $name;
+        $game->save(); 
+
+        return $game;
     }
 
     /**
@@ -34,7 +38,9 @@ class GamesRepository
     public function removeGame(
         $name
     ) {
-        return false;
+        return Game::where('name', $name)
+            ->firstOrFail()
+            ->delete();
     }
 
 }
