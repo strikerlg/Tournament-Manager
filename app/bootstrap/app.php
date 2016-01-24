@@ -84,6 +84,7 @@ $app->register(App\Providers\EventServiceProvider::class);
 $app->register(App\Providers\UsersRepoServiceProvider::class);
 $app->register(App\Providers\PlayersRepoServiceProvider::class);
 $app->register(App\Providers\AdministratorsRepoServiceProvider::class);
+$app->register(App\Providers\GamesRepoServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------
