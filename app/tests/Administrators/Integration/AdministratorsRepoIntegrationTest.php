@@ -2,6 +2,8 @@
 
 namespace Tests\Administrators\Integration;
 
+use Laracasts\TestDummy\Factory;
+
 /**
  * Test for the admin repo.
  */
@@ -48,7 +50,7 @@ class AdministratorsRepoIntegrationTest extends \TestCase
     {
         $user = Factory::create('App\\Models\\User');
         $admin = $this->repo->addAdministrator(
-            $user->id,
+            $user,
             'testing nickname'
         );
         $this->assertNotNull(
