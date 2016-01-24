@@ -26,7 +26,7 @@
 * Add testDummy factories for the model classes. -> DOING ...
     * Add factories for the User model. -> DONE
     * Add factories for the Player model. -> DONE
-    * Add factories for the Administrator model.
+    * Add factories for the Administrator model. -> DONE
     * Add factories for the Game model.
     * Add factories for the Tournament model. 
     * Add factories for the Match model.
@@ -42,7 +42,7 @@
 * Write model classes. -> DOING ...
     * Add User model. -> DONE
     * Add Player model. -> DONE
-    * Add Administrator model.
+    * Add Administrator model. -> DONE
     * Add Game model.
     * Add Tournament model.
     * Add Match model.
