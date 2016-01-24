@@ -19,3 +19,16 @@ $factory('App\\Models\\Administrator', [
 $factory('App\\Models\\Game', [
     'name' => $faker->name,
 ]);
+
+$factory('App\\Models\\Tournament', [
+    'name' => $faker->name,
+    'begin' => $faker->dateTimeBetween(
+        'now', '+ 3 days'
+    ),
+    'end' => $faker->dateTimeBetween(
+        '+3 days', '+3 days'
+    ),
+    'has_ended' => false,
+    'created_by' => 'factory:App\\Models\\Administrator',
+]);
+

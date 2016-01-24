@@ -13,6 +13,7 @@ class TournamentsRepository implements ITournamentsRepository
     /**
      * Adds a new Tournament into the DB.
      *
+     * @param Administrator $admin
      * @param str $name
      * @param Carbon $begin
      * @param Carbon $finish
@@ -21,6 +22,7 @@ class TournamentsRepository implements ITournamentsRepository
      * @return Tournament
      */
     public function addTournament(
+        Administrator $admin,
         $name,
         $begin,
         $finish,
@@ -32,6 +34,7 @@ class TournamentsRepository implements ITournamentsRepository
     /**
      * Updates an existing Tournament.
      *
+     * @param Administrator $admin
      * @param str $name
      * @param Carbon $begin
      * @param Carbon $finish
@@ -41,6 +44,7 @@ class TournamentsRepository implements ITournamentsRepository
      * @return Tournament
      */
     public function updateTournament(
+        Administrator $admin,
         $name,
         $begin = null,
         $finish = null,
@@ -53,11 +57,13 @@ class TournamentsRepository implements ITournamentsRepository
     /**
      * Removes an existing Tournament.
      *
+     * @param Administrator $admin
      * @param str $name
      *
      * @return boolean
      */
-    public function deleteTournament(
+    public function removeTournament(
+        Administrator $admin,
         $name
     ) {
         return false;

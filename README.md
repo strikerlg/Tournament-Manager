@@ -28,7 +28,7 @@
     * Add factories for the Player model. -> DONE
     * Add factories for the Administrator model. -> DONE
     * Add factories for the Game model. -> DONE
-    * Add factories for the Tournament model. 
+    * Add factories for the Tournament model. -> DONE
     * Add factories for the Match model.
     * Add factories for the Rank model.
 * Write integration tests for the repositories. -> DOING ...
