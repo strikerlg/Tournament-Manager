@@ -41,4 +41,14 @@ class User extends Model implements
     {
         return $this->hasOne('App\\Models\\Player');
     }
+
+    /**
+     * The Administrator related to this User.
+     *
+     * @return Relation
+     */
+    public function administrator()
+    {
+        return $this->hasOne('App\\Models\\Administrator');
+    }
 }
