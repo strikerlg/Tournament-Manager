@@ -35,7 +35,7 @@
     * Add tests for the users repository. -> DONE
     * Add tests for the players repository. -> DONE
     * Add tests for the administrators repository. -> DONE
-    * Add tests for the games repository.
+    * Add tests for the games repository. -> DOING ...
     * Add tests for the tournaments repository.
     * Add tests for the matches repository.
     * Add tests for the rankings repository.
@@ -43,7 +43,7 @@
     * Add User model. -> DONE
     * Add Player model. -> DONE
     * Add Administrator model. -> DONE
-    * Add Game model.
+    * Add Game model. -> DONE
     * Add Tournament model.
     * Add Match model.
     * Add Rank model.
