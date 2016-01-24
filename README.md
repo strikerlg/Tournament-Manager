@@ -36,7 +36,7 @@
     * Add tests for the players repository. -> DONE
     * Add tests for the administrators repository. -> DONE
     * Add tests for the games repository. -> DONE
-    * Add tests for the tournaments repository.
+    * Add tests for the tournaments repository. -> DONE
     * Add tests for the matches repository.
     * Add tests for the rankings repository.
 * Write model classes. -> DOING ...
@@ -52,7 +52,7 @@
     * Add Players repo. -> DONE
     * Add Administrators repo. -> DONE
     * Add Games repo. -> DONE
-    * Add tournaments repo.
+    * Add tournaments repo. -> DOING ...
     * Add Matches repo.
     * Add Rankings repo.
 * Write the unit tests for the services methods.

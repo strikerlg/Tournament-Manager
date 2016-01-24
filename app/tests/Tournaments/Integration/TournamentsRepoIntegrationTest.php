@@ -130,7 +130,5 @@ class TournamentsRepoIntegrationTest extends \TestCase
             'non existent name'
         );
     }
-
-    }
 }
 
