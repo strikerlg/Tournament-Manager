@@ -17,5 +17,5 @@ $factory('App\\Models\\Administrator', [
 ]);
 
 $factory('App\\Models\\Game', [
-    'nick' => $faker->name,
+    'name' => $faker->name,
 ]);
