@@ -27,7 +27,7 @@
     * Add factories for the User model. -> DONE
     * Add factories for the Player model. -> DONE
     * Add factories for the Administrator model. -> DONE
-    * Add factories for the Game model.
+    * Add factories for the Game model. -> DONE
     * Add factories for the Tournament model. 
     * Add factories for the Match model.
     * Add factories for the Rank model.
@@ -35,7 +35,7 @@
     * Add tests for the users repository. -> DONE
     * Add tests for the players repository. -> DONE
     * Add tests for the administrators repository. -> DONE
-    * Add tests for the games repository. -> DOING ...
+    * Add tests for the games repository. -> DONE
     * Add tests for the tournaments repository.
     * Add tests for the matches repository.
     * Add tests for the rankings repository.
