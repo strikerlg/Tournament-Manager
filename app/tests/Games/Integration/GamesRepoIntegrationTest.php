@@ -42,5 +42,46 @@ class GamesRepoIntegrationTest extends \TestCase
     {
         $this->assertTrue(true);
     }
+
+    /**
+     * Tests if the add method on the repo
+     * works correclty.
+     */
+    public function testRepoAddGameAdditionSuccess()
+    {
+        $game = $this->repo->addGame(
+            'testing name'
+        );
+        $this->assertNotNull($game);
+        $this->assertInstanceOf(
+            'App\\Models\\Game',
+            $game
+        );
+        $this->seeInDatabase('games', [
+            'id' => $game->id,
+            'name' => $game->name
+        ]);
+    }
+
+    /**
+     * Tests if the remove method
+     * is working correclty.
+     */
+    public function testRepoRemoveGameRemovalSuccess()
+    {
+        $game = Factory::create('App\\Models\\Game');
+        $this->repo->removeGame($game->name);
+        $this->assertNull(Game::find($game->id));
+    }
+
+    /**
+     * Tests if the remove throws a modelNotFound
+     * Exception when passing an inexistent
+     * game id.
+     */
+    public function testRepoRemoveGameNotFound()
+    {
+        $this->repo->removeGame('test failure');
+    }
 }
 
