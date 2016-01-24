@@ -50,7 +50,7 @@
 * Write the repositories. -> DOING ...
     * Add Users repo. -> DONE
     * Add Players repo. -> DONE
-    * Add Administrators repo.
+    * Add Administrators repo. -> DONE
     * Add Games repo.
     * Add tournaments repo.
     * Add Matches repo.
