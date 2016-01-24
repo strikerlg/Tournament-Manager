@@ -11,3 +11,8 @@ $factory('App\\Models\\Player', [
     'user_id' => 'factory:App\\Models\\User',
 ]);
 
+$factory('App\\Models\\Administrator', [
+    'nickname' => $faker->name,
+    'user_id' => 'factory:App\\Models\\User',
+]);
+

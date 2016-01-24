@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Administrators;
 
-use App\Models\Users;
+use App\Models\User;
 
 /**
  * Administrators repo interface.
