@@ -3,6 +3,7 @@
 namespace Tests\Tournaments\Integration;
 
 use App\Models\Tournament;
+use App\Models\Administrator;
 use Laracasts\TestDummy\Factory;
 
 /**
@@ -50,16 +51,16 @@ class TournamentsRepoIntegrationTest extends \TestCase
     {
         $admin = Factory::create('App\\Models\\Administrator');
         $tournament = $this->repo->addTournament(
+            $admin,
             'tournament name',
             \Carbon\Carbon::now(),
             \Carbon\Carbon::now(),
-            false,
-            $admin
+            false
         );
         $this->assertNotNull($tournament);
         $this->assertInstanceOf(
             'App\\Models\\Tournament',
-            $admin
+            $tournament
         );
         $this->seeInDatabase('tournaments', [
             'name' => $tournament->name,
@@ -81,22 +82,20 @@ class TournamentsRepoIntegrationTest extends \TestCase
 
         $tournament = Factory::create('App\\Models\\Tournament');
         $tournament = $this->repo->updateTournament(
-            $name,
+            Administrator::find($tournament->created_by),
+            $tournament->name,
             $beginDate,
             $finishDate,
             $has_ended
         );
 
-        $this->assertNotEquals(
-            $tournament->name, $name
-        );
-        $this->assertNotEquals(
+        $this->assertEquals(
             $tournament->begin, $beginDate
         );
-        $this->assertNotEquals(
+        $this->assertEquals(
             $tournament->finish, $finishDate
         );
-        $this->assertNotEquals(
+        $this->assertEquals(
             $tournament->has_ended, $has_ended
         );
     }
@@ -108,7 +107,9 @@ class TournamentsRepoIntegrationTest extends \TestCase
     public function testRepoRemoveTournamentRemovalSuccess()
     {
         $tournament = Factory::create('App\\Models\\Tournament');
+
         $result = $this->repo->removeTournament(
+            Administrator::find($tournament->created_by),
             $tournament->name
         );
         $this->assertTrue($result);
@@ -122,11 +123,13 @@ class TournamentsRepoIntegrationTest extends \TestCase
      * ModelNotFoundException when an 
      * invalid name is passed.
      *
-     * @expectedException Illuminate\Database\Eloquent\ModelNotFoundException;
+     * @expectedException Illuminate\Database\Eloquent\ModelNotFoundException
      */
     public function testRepoRemoveTournamentRemovalFailure()
     {
+        $admin = Factory::create('App\\Models\\Administrator');
         $this->repo->removeTournament(
+            $admin,
             'non existent name'
         );
     }

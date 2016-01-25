@@ -15,8 +15,8 @@ class TournamentsRepository implements ITournamentsRepository
      *
      * @param Administrator $admin
      * @param str $name
-     * @param Carbon $begin
-     * @param Carbon $finish
+     * @param Carbon\Carbon $begin
+     * @param Carbon\Carbon $finish
      * @param bool $has_ended
      *
      * @return Tournament
@@ -24,11 +24,19 @@ class TournamentsRepository implements ITournamentsRepository
     public function addTournament(
         Administrator $admin,
         $name,
-        $begin,
-        $finish,
+        \Carbon\Carbon $begin,
+        \Carbon\Carbon $finish,
         $has_ended = false
     ) {
-        return null;
+        $tournament = new Tournament();
+        $tournament->created_by = $admin->id;
+        $tournament->name = $name;
+        $tournament->begin = $begin;
+        $tournament->finish = $finish;
+        $tournament->has_ended = $has_ended;
+        $tournament->save();
+
+        return $tournament;
     }
 
     /**
@@ -36,8 +44,8 @@ class TournamentsRepository implements ITournamentsRepository
      *
      * @param Administrator $admin
      * @param str $name
-     * @param Carbon $begin
-     * @param Carbon $finish
+     * @param Carbon\Carbon $begin
+     * @param Carbon\Carbon $finish
      * @param bool $has_ended
      * @param str $newName
      * 
@@ -46,12 +54,26 @@ class TournamentsRepository implements ITournamentsRepository
     public function updateTournament(
         Administrator $admin,
         $name,
-        $begin = null,
-        $finish = null,
+        \Carbon\Carbon $begin = null,
+        \Carbon\Carbon $finish = null,
         $has_ended = false,
         $newName = null
     ) {
-        return null;
+        $tournament = Tournament::where('name', $name)
+            ->where('created_by', $admin->id)
+            ->firstOrFail();
+
+        if ($newName)
+            $tournament->name = $newName;
+        if ($begin)
+            $tournament->begin = $begin;
+        if ($finish)
+            $tournament->finish = $finish;
+        $tournament->has_ended = $has_ended;
+
+        $tournament->save();
+
+        return $tournament;
     }
 
     /**
@@ -66,7 +88,10 @@ class TournamentsRepository implements ITournamentsRepository
         Administrator $admin,
         $name
     ) {
-        return false;
+        return Tournament::where('name', $name)
+            ->where('created_by', $admin->id)
+            ->firstOrFail()
+            ->delete();
     }
 }
 

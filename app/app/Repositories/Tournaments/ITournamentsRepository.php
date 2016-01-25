@@ -15,8 +15,8 @@ interface ITournamentsRepository
      *
      * @param Administrator $admin
      * @param str $name
-     * @param Carbon $begin
-     * @param Carbon $finish
+     * @param Carbon\Carbon $begin
+     * @param Carbon\Carbon $finish
      * @param bool $has_ended
      *
      * @return Tournament
@@ -24,8 +24,8 @@ interface ITournamentsRepository
     public function addTournament(
         Administrator $admin,
         $name,
-        $begin, 
-        $finish,
+        \Carbon\Carbon $begin, 
+        \Carbon\Carbon $finish,
         $has_ended = false
     );
 
@@ -34,8 +34,8 @@ interface ITournamentsRepository
      *
      * @param Administrator $admin
      * @param str $name
-     * @param Carbon $begin
-     * @param Carbon $finish
+     * @param Carbon\Carbon $begin
+     * @param Carbon\Carbon $finish
      * @param bool $has_ended
      * @param str $newName
      * 
@@ -44,8 +44,8 @@ interface ITournamentsRepository
     public function updateTournament(
         Administrator $admin,
         $name,
-        $begin = null,
-        $finish = null,
+        \Carbon\Carbon $begin = null,
+        \Carbon\Carbon $finish = null,
         $has_ended = false,
         $newName = null
     );
