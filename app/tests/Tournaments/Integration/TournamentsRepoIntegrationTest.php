@@ -119,7 +119,7 @@ class TournamentsRepoIntegrationTest extends \TestCase
     }
 
     /**
-     * Tests if the remove tournament throw a
+     * Tests if the remove tournament throws a
      * ModelNotFoundException when an 
      * invalid name is passed.
      *
@@ -129,6 +129,22 @@ class TournamentsRepoIntegrationTest extends \TestCase
     {
         $admin = Factory::create('App\\Models\\Administrator');
         $this->repo->removeTournament(
+            $admin,
+            'non existent name'
+        );
+    }
+
+    /**
+     * Tests if the update tournament throws a
+     * ModelNotFoundException when an 
+     * invalid name is passed.
+     *
+     * @expectedException Illuminate\Database\Eloquent\ModelNotFoundException
+     */
+    public function testRepoUpdateTournamentUpdateFailure()
+    {
+        $admin = Factory::create('App\\Models\\Administrator');
+        $this->repo->updateTournament(
             $admin,
             'non existent name'
         );
