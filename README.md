@@ -37,7 +37,7 @@
     * Add tests for the administrators repository. -> DONE
     * Add tests for the games repository. -> DONE
     * Add tests for the tournaments repository. -> DONE
-    * Add tests for the matches repository.
+    * Add tests for the matches repository. -> DONE
     * Add tests for the rankings repository.
 * Write model classes. -> DOING ...
     * Add User model. -> DONE
