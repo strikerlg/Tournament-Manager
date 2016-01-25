@@ -15,9 +15,15 @@ class CreateRankingsTable extends Migration
         Schema::create('rankings', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('player_id');
-            $table->foreign('player_id')->references('id')->on('players');
+            $table->foreign('player_id')
+                ->references('id')
+                ->on('players')
+                ->onDelete('cascade');
             $table->integer('tournament_id');
-            $table->foreign('tournament_id')->references('id')->on('tournaments');
+            $table->foreign('tournament_id')
+                ->references('id')
+                ->on('tournaments')
+                ->onDelete('cascade');
             $table->integer('score')->default(0);
             $table->timestamps();
         });
@@ -30,8 +36,6 @@ class CreateRankingsTable extends Migration
      */
     public function down()
     {
-        Schema::table('rankings', function (Blueprint $table) {
-            //
-        });
+        Schema::drop('rankings');
     }
 }

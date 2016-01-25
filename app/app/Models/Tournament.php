@@ -12,7 +12,7 @@ class Tournament extends Model
     /**
      * @var string
      */
-    protected $table = 'players';
+    protected $table = 'tournaments';
 
     /** 
      * @var fillable

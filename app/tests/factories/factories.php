@@ -25,7 +25,7 @@ $factory('App\\Models\\Tournament', [
     'begin' => $faker->dateTimeBetween(
         'now', '+ 3 days'
     ),
-    'end' => $faker->dateTimeBetween(
+    'finish' => $faker->dateTimeBetween(
         '+3 days', '+3 days'
     ),
     'has_ended' => false,

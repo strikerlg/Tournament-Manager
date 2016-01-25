@@ -28,6 +28,6 @@ class CreateAdministratorsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('administrator');
+        Schema::drop('administrators');
     }
 }
