@@ -56,5 +56,12 @@
     * Add Matches repo.
     * Add Rankings repo.
 * Write the unit tests for the services methods.
-* Write the unit tests for the controller functions.
+* Write the Services
+    * Add Players Service.
+    * Add Administrators Service.
+    * Add Games Service.
+    * Add Tournaments Service.
+    * Add Matches Service.
+    * Add Rankings Service.
+* Write the functional tests for the controller methods.
 * Write the controllers.
