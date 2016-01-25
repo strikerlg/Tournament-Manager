@@ -44,7 +44,7 @@
     * Add Player model. -> DONE
     * Add Administrator model. -> DONE
     * Add Game model. -> DONE
-    * Add Tournament model.
+    * Add Tournament model. -> DONE
     * Add Match model.
     * Add Rank model.
 * Write the repositories. -> DOING ...
@@ -52,7 +52,7 @@
     * Add Players repo. -> DONE
     * Add Administrators repo. -> DONE
     * Add Games repo. -> DONE
-    * Add tournaments repo. -> DOING ...
+    * Add tournaments repo. -> DONE
     * Add Matches repo.
     * Add Rankings repo.
 * Write the unit tests for the services methods.
