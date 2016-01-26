@@ -94,7 +94,7 @@ class MatchesRepoIntegrationTest extends \TestCase
         $newFinish = \Carbon\Carbon::tomorrow();
 
         $match = $this->repo->updateMatch(
-            $match->administrator,
+            $match->created_by,
             $match->id,
             $newPlayer,
             $newSecondPlayer,
@@ -102,32 +102,32 @@ class MatchesRepoIntegrationTest extends \TestCase
             $newBegin,
             $newFinish,
             $ended
-         );
+        );
 
-         $this->assertEquals(
-             $match->firstPlayer->id,
-             $newPlayer->id
-         );
-         $this->assertEquals(
-             $match->secondPlayer->id,
-             $newSecondPlayer->id
-         );
-         $this->assertEquals(
-             $match->winner->id,
-             $winner->id
-         );
-         $this->assertEquals(
-             $match->begin,
-             $newBegin
-         );
-         $this->assertEquals(
-             $match->finish,
-             $newFinish
-         );
-         $this->assertEquals(
-             $match->has_ended,
-             $ended
-         );
+        $this->assertEquals(
+            $match->firstPlayer->id,
+            $newPlayer->id
+        );
+        $this->assertEquals(
+            $match->secondPlayer->id,
+            $newSecondPlayer->id
+        );
+        $this->assertEquals(
+            $match->winner->id,
+            $winner->id
+        );
+        $this->assertEquals(
+            $match->begin,
+            $newBegin
+        );
+        $this->assertEquals(
+            $match->finish,
+            $newFinish
+        );
+        $this->assertEquals(
+            $match->has_ended,
+            $ended
+        );
     }
 
     /**
@@ -153,7 +153,7 @@ class MatchesRepoIntegrationTest extends \TestCase
     {
         $match = Factory::create('App\\Models\\Match');
         $result = $this->repo->removeMatch(
-            $match->administrator,
+            $match->created_by,
             $match->id
         );
         $this->assertTrue($result);

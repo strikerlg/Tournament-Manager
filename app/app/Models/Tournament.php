@@ -31,9 +31,9 @@ class Tournament extends Model
      *
      * @return Relation
      */
-    public function administrator()
+    public function createdBy()
     {
-        return $this->belongTo('App\\Models\\Administrator');
+        return $this->belongsTo('App\\Models\\Administrator');
     }
 
     /**

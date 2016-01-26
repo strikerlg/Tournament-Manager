@@ -36,7 +36,9 @@ $factory('App\\Models\\Tournament', [
 
 $factory('App\\Models\\Match', function($faker) {
     $tournament = Factory::create('App\\Models\\Tournament');
-    $admin = $tournament->createdBy;
+    $admin = \App\Models\Administrator::find(
+        $tournament->created_by
+    );
 
     return [
         'tournament_id' => $tournament,
