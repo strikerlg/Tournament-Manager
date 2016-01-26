@@ -29,7 +29,7 @@
     * Add factories for the Administrator model. -> DONE
     * Add factories for the Game model. -> DONE
     * Add factories for the Tournament model. -> DONE
-    * Add factories for the Match model.
+    * Add factories for the Match model. -> DONE
     * Add factories for the Rank model.
 * Write integration tests for the repositories. -> DOING ...
     * Add tests for the users repository. -> DONE
@@ -45,7 +45,7 @@
     * Add Administrator model. -> DONE
     * Add Game model. -> DONE
     * Add Tournament model. -> DONE
-    * Add Match model.
+    * Add Match model. -> DONE
     * Add Rank model.
 * Write the repositories. -> DOING ...
     * Add Users repo. -> DONE
@@ -53,7 +53,7 @@
     * Add Administrators repo. -> DONE
     * Add Games repo. -> DONE
     * Add tournaments repo. -> DONE
-    * Add Matches repo.
+    * Add Matches repo. -> DOING ...
     * Add Rankings repo.
 * Write the unit tests for the services methods.
 * Write the Services
