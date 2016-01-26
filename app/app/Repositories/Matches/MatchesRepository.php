@@ -5,6 +5,7 @@ namespace App\Repositories\Matches;
 use App\Models\Administrator;
 use App\Models\Tournament;
 use App\Models\Player;
+use App\Models\Match;
 
 /**
  * Implementation for the Matches repo.
@@ -31,7 +32,16 @@ class MatchesRepository implements IMatchesRepository
         \Carbon\Carbon $begin,
         \Carbon\Carbon $finish
     ) {
-        return null;
+        $match = new Match();
+        $match->created_by = $admin->id;
+        $match->tournament_id = $tournament->id;
+        $match->first_player_id = $firstPlayer->id;
+        $match->second_player_id = $secondPlayer->id;
+        $match->begin = $begin;
+        $match->finish = $finish;
+        $match->save();
+
+        return $match;
     }
 
     /**

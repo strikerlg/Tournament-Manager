@@ -70,9 +70,10 @@ class MatchesRepoIntegrationTest extends \TestCase
         );
 
         $this->seeInDatabase('matches', [
+            'id' => $match->id,
             'tournament_id' => $tournament->id,
-            'first_player' => $firstPlayer->id,
-            'second_player' => $secondPlayer->id,
+            'first_player_id' => $firstPlayer->id,
+            'second_player_id' => $secondPlayer->id,
             'begin' => $begin,
             'finish' => $finish,
             'created_by' => $admin->id,
