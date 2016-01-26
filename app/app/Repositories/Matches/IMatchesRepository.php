@@ -48,7 +48,7 @@ interface IMatchesRepository
      *
      * @return Match
      */
-    public function addMatch(
+    public function updateMatch(
         Administrator $admin,
         $matchID,
         Player $newFirstPlayer = null,
