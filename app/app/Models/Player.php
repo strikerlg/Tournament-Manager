@@ -17,7 +17,7 @@ class Player extends Model
     /** 
      * @var fillable
      */
-    protected $fillabel = [
+    protected $fillable  = [
         'nickname', 'user_id'
     ];
 
@@ -30,6 +30,17 @@ class Player extends Model
     public function user()
     {
         return $this->belongsTo('App\\Models\\User');
+    }
+
+    /**
+     * One to Many relationship with
+     * the Match model.
+     *
+     * @return Relation
+     */
+    public function matches()
+    {
+        return $this->hasMany('App\\Models\\Match');
     }
 }
 

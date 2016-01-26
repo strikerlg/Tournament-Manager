@@ -35,5 +35,16 @@ class Tournament extends Model
     {
         return $this->belongTo('App\\Models\\Administrator');
     }
+
+    /**
+     * One to Many relationship with
+     * the Match model.
+     *
+     * @return Relation
+     */
+    public function matches()
+    {
+        return $this->hasMany('App\\Models\\Match');
+    }
 }
 

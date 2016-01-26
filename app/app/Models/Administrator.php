@@ -42,5 +42,16 @@ class Administrator extends Model
     {
         return $this->hasMany('App\\Models\\Tournament');
     }
+
+    /**
+     * One to Many relationship with
+     * the Match model.
+     *
+     * @return Relation
+     */
+    public function matches()
+    {
+        return $this->hasMany('App\\Models\\Match');
+    }
 }
 
