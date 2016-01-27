@@ -3,6 +3,8 @@
 namespace Tests\Rankings\Integration;
 
 use App\Models\Player;
+use App\Models\Administrator;
+use App\Models\Tournament;
 use Laracasts\TestDummy\Factory;
 
 /**

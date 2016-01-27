@@ -55,3 +55,8 @@ $factory('App\\Models\\Match', function($faker) {
     ];
 });
 
+$factory('App\\Models\\Ranking', [
+    'tournament_id' => 'factory:App\\Models\\Tournament',
+    'player_id' => 'factory:App\\Models\\Player',
+    'score' => mt_rand(0, 150),
+]);
