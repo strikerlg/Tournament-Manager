@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories\Players;
+namespace App\Repositories\Rankings;
 
 use App\Models\Administrator;
 use App\Models\Player;
@@ -39,7 +39,7 @@ interface IRankingsRepository
      *
      * @return Ranking
      */
-    public function updatedRanking(
+    public function updateRanking(
         $matchID,
         $score = null,
         Tournament $tournament = null,
