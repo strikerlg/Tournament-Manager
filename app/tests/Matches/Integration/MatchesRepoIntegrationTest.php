@@ -3,6 +3,7 @@
 namespace Tests\Matches\Integration;
 
 use App\Models\Match;
+use App\Models\Administrator;
 use Laracasts\TestDummy\Factory;
 
 /**
@@ -95,7 +96,7 @@ class MatchesRepoIntegrationTest extends \TestCase
         $newFinish = \Carbon\Carbon::tomorrow();
 
         $match = $this->repo->updateMatch(
-            $match->created_by,
+            Administrator::find($match->created_by),
             $match->id,
             $newPlayer,
             $newSecondPlayer,
@@ -114,7 +115,7 @@ class MatchesRepoIntegrationTest extends \TestCase
             $newSecondPlayer->id
         );
         $this->assertEquals(
-            $match->winner->id,
+            $match->winner,
             $winner->id
         );
         $this->assertEquals(
@@ -154,7 +155,7 @@ class MatchesRepoIntegrationTest extends \TestCase
     {
         $match = Factory::create('App\\Models\\Match');
         $result = $this->repo->removeMatch(
-            $match->created_by,
+            Administrator::find($match->created_by),
             $match->id
         );
         $this->assertTrue($result);

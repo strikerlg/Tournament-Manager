@@ -70,7 +70,37 @@ class MatchesRepository implements IMatchesRepository
         \Carbon\Carbon $newFinish = null,
         $hasEnded = false
     ) {
-        return null;
+        $match = Match::where('id', $matchID)
+            ->where('created_by', $admin->id)
+            ->firstOrFail();
+        
+        if ($newFirstPlayer) {
+            $match->first_player_id = $newFirstPlayer->id;
+        }
+
+        if ($newSecondPlayer) {
+            $match->second_player_id = $newSecondPlayer->id;
+        }
+
+        if ($winner) {
+            $match->winner = $winner->id;
+        }
+
+        if ($newBegin) {
+            $match->begin = $newBegin;
+        }
+
+        if ($newFinish) {
+            $match->finish = $newFinish;
+        }
+
+        if ($hasEnded) {
+            $match->has_ended = $hasEnded;
+        }
+
+        $match->save();
+
+        return $match;
     }
 
     /**
@@ -87,7 +117,10 @@ class MatchesRepository implements IMatchesRepository
         Administrator $admin,
         $matchID
     ) {
-        return false;
+        return Match::where('id', $matchID)
+            ->where('created_by', $admin->id)
+            ->firstOrFail()
+            ->delete();
     }
 }
 
