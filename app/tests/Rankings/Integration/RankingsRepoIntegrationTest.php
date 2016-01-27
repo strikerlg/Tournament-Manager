@@ -49,7 +49,31 @@ class RankingsRepoIntegrationTest extends \TestCase
      */
     public function testRepoAddRankingsAdditionSuccess()
     {
-        $this->markTestIncomplete('write me');
+        $player = Factory::create('App\\Models\\Player');
+        $tournament = Factory::create('App\\Models\\Tournament');
+        $ranking = $this->repo->addRanking(
+            $player,
+            $tournament,
+            12
+        );
+
+        $this->assertNotNull(
+            $ranking
+        );
+        $this->assertInstanceOf(
+            'App\\Model\\Ranking',
+            $ranking
+        );
+
+        $this->seeInDatabase(
+            'rankings',
+            [
+                'id' => $ranking->id,
+                'player_id' => $player->id,
+                'tournament_id' => $tournament->id,
+                'score' => 12,
+            ]
+        );
     }
 
     /**
@@ -58,7 +82,25 @@ class RankingsRepoIntegrationTest extends \TestCase
      */
     public function testRepoUpdateRankingsUpdateSuccess()
     {
-        $this->markTestIncomplete('write me');
+        $ranking = Factory::create('App\\Models\\Ranking');
+        $ranking = $this->repo->updateRanking(
+            $ranking->id,
+            14,
+            Tournament::find($ranking->tournament_id),
+            Player::find($ranking->player_id)
+        );
+        $this->assertNotNull($ranking);
+        $this->assertInstanceOf(
+            'App\\Model\\Ranking',
+            $ranking
+        );
+        $this->seeInDatabase(
+            'rankings',
+            [
+                'id' => $ranking->id,
+                'score' => $ranking->score,
+            ]
+        );
     }
 
     /**
@@ -70,7 +112,12 @@ class RankingsRepoIntegrationTest extends \TestCase
      */
     public function testRepoUpdateRankingsUpdateFailure()
     {
-        $this->markTestIncomplete('write me');
+        $ranking = $this->repo->updateRanking(
+            1222,
+            123,
+            Factory::create('App\\Models\\Tournament'),
+            Factory::create('App\\Models\\Player')
+        );
     }
 
     /**
@@ -79,7 +126,14 @@ class RankingsRepoIntegrationTest extends \TestCase
      */
     public function testRepoRemoveRankingRemovalSuccess()
     {
-        $this->markTestIncomplete('write me');
+        $ranking = Factory::create('App\\Models\\Ranking');
+        $admin = Administrator::find(
+            Tournament::find($ranking->tournament_id)->created_by
+        );
+        $this->repo->removeRanking(
+            $admin,
+            $ranking->id
+        );
     }
 
     /**
@@ -91,7 +145,10 @@ class RankingsRepoIntegrationTest extends \TestCase
      */
     public function testRepoRemoveRankingRemovalSuccess()
     {
-        $this->markTestIncomplete('write me');
+        $this->repo->removeRanking(
+            Factory::create('App\\Models\\Administrator'),
+            $ranking->id
+        );
     }
 }
 

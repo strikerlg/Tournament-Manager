@@ -30,7 +30,7 @@
     * Add factories for the Game model. -> DONE
     * Add factories for the Tournament model. -> DONE
     * Add factories for the Match model. -> DONE
-    * Add factories for the Rank model.
+    * Add factories for the Rankings model.
 * Write integration tests for the repositories. -> DOING ...
     * Add tests for the users repository. -> DONE
     * Add tests for the players repository. -> DONE
@@ -38,7 +38,7 @@
     * Add tests for the games repository. -> DONE
     * Add tests for the tournaments repository. -> DONE
     * Add tests for the matches repository. -> DONE
-    * Add tests for the rankings repository.
+    * Add tests for the rankings repository. -> DOING ...
 * Write model classes. -> DOING ...
     * Add User model. -> DONE
     * Add Player model. -> DONE
@@ -46,7 +46,7 @@
     * Add Game model. -> DONE
     * Add Tournament model. -> DONE
     * Add Match model. -> DONE
-    * Add Rank model.
+    * Add Rankings model.
 * Write the repositories. -> DOING ...
     * Add Users repo. -> DONE
     * Add Players repo. -> DONE
