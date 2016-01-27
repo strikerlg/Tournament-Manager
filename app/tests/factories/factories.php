@@ -41,7 +41,7 @@ $factory('App\\Models\\Match', function($faker) {
     );
 
     return [
-        'tournament_id' => $tournament,
+        'tournament_id' => $tournament->id,
         'first_player_id' => 'factory:App\\Models\\Player',
         'second_player_id' => 'factory:App\\Models\\Player',
         'winner' => 'factory:App\\Models\\Player',
@@ -51,7 +51,7 @@ $factory('App\\Models\\Match', function($faker) {
         'finish' => $faker->dateTimeBetween(
             '+2 days', '+2 days'
         ),
-        'created_by' => $admin,
+        'created_by' => $admin->id,
     ];
 });
 
