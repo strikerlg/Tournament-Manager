@@ -3,6 +3,7 @@
 namespace App\Repositories\Rankings;
 
 use App\Models\Administrator;
+use App\Models\Tournament;
 use App\Models\Player;
 
 /**
