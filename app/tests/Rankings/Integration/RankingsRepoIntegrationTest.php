@@ -143,7 +143,7 @@ class RankingsRepoIntegrationTest extends \TestCase
      *
      * @expectedException Illuminate\Database\Eloquent\ModelNotFoundException
      */
-    public function testRepoRemoveRankingRemovalSuccess()
+    public function testRepoRemoveRankingRemovalFailure()
     {
         $this->repo->removeRanking(
             Factory::create('App\\Models\\Administrator'),
