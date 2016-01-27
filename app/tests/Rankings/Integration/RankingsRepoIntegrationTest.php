@@ -147,7 +147,7 @@ class RankingsRepoIntegrationTest extends \TestCase
     {
         $this->repo->removeRanking(
             Factory::create('App\\Models\\Administrator'),
-            $ranking->id
+            '1233'
         );
     }
 }
