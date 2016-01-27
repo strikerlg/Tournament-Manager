@@ -5,6 +5,7 @@ namespace Tests\Rankings\Integration;
 use App\Models\Player;
 use App\Models\Administrator;
 use App\Models\Tournament;
+use App\Models\Ranking;
 use Laracasts\TestDummy\Factory;
 
 /**
@@ -49,7 +50,7 @@ class RankingsRepoIntegrationTest extends \TestCase
      * Tests if the add rankings works 
      * correclty.
      */
-    public function testRepoAddRankingsAdditionSuccess()
+    public function testRepoAddRankingAdditionSuccess()
     {
         $player = Factory::create('App\\Models\\Player');
         $tournament = Factory::create('App\\Models\\Tournament');
@@ -63,7 +64,7 @@ class RankingsRepoIntegrationTest extends \TestCase
             $ranking
         );
         $this->assertInstanceOf(
-            'App\\Model\\Ranking',
+            'App\\Models\\Ranking',
             $ranking
         );
 
@@ -93,7 +94,7 @@ class RankingsRepoIntegrationTest extends \TestCase
         );
         $this->assertNotNull($ranking);
         $this->assertInstanceOf(
-            'App\\Model\\Ranking',
+            'App\\Models\\Ranking',
             $ranking
         );
         $this->seeInDatabase(
@@ -132,9 +133,15 @@ class RankingsRepoIntegrationTest extends \TestCase
         $admin = Administrator::find(
             Tournament::find($ranking->tournament_id)->created_by
         );
-        $this->repo->removeRanking(
+        $result = $this->repo->removeRanking(
             $admin,
             $ranking->id
+        );
+        $this->assertTrue(
+            $result
+        );
+        $this->assertNull(
+            Ranking::find($ranking->id)
         );
     }
 

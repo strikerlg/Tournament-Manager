@@ -31,7 +31,7 @@ interface IRankingsRepository
      * Updates the existing ranking
      * passed.
      *
-     * @param int $matchID
+     * @param int $rankingID
      * @param int $score
      * @param Tournament $tournament
      * @param Player $player
@@ -41,7 +41,7 @@ interface IRankingsRepository
      * @return Ranking
      */
     public function updateRanking(
-        $matchID,
+        $rankingID,
         $score = null,
         Tournament $tournament = null,
         Player $player = null
@@ -59,7 +59,7 @@ interface IRankingsRepository
      */
     public function removeRanking(
         Administrator $admin,
-        $matchID
+        $rankingID
     );
 }
 

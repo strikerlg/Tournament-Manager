@@ -5,6 +5,7 @@ namespace App\Repositories\Rankings;
 use App\Models\Administrator;
 use App\Models\Tournament;
 use App\Models\Player;
+use App\Models\Ranking;
 
 /**
  * Interface for the rankings repo.
@@ -26,14 +27,20 @@ class RankingsRepository implements IRankingsRepository
         Tournament $tournament,
         $score = 0
     ) {
-        return null;
+        $ranking = new Ranking;
+        $ranking->player_id = $player->id;
+        $ranking->tournament_id = $tournament->id;
+        $ranking->score = $score;
+        $ranking->save();
+
+        return $ranking;
     }
 
     /**
      * Updates the existing ranking
      * passed.
      *
-     * @param int $matchID
+     * @param int $rankingID
      * @param int $score
      * @param Tournament $tournament
      * @param Player $player
@@ -43,19 +50,31 @@ class RankingsRepository implements IRankingsRepository
      * @return Ranking
      */
     public function updateRanking(
-        $matchID,
+        $rankingID,
         $score = null,
         Tournament $tournament = null,
         Player $player = null
     ) {
-        return null;
+        $ranking = Ranking::findOrFail($rankingID);
+        if ($score) {
+            $ranking->score = $score;
+        }
+        if ($tournament) {
+            $ranking->tournament_id = $tournament->id;
+        }
+        if ($player) {
+            $ranking->player_id = $player->id;
+        }
+        $ranking->save();
+
+        return $ranking;
     }
 
     /**
      * Removes an existing ranking.
      *
      * @param Administrator $admin
-     * @param int $matchID
+     * @param int $rankingID
      *
      * @expectedException Illuminate\Database\Eloquent\ModelNotFoundException
      *
@@ -63,9 +82,10 @@ class RankingsRepository implements IRankingsRepository
      */
     public function removeRanking(
         Administrator $admin,
-        $matchID
+        $rankingID
     ) {
-        return false;
+        return Ranking::findOrFail($rankingID)
+            ->delete();
     }
 }
 
