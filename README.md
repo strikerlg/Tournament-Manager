@@ -53,7 +53,7 @@
     * Add Administrators repo. -> DONE
     * Add Games repo. -> DONE
     * Add tournaments repo. -> DONE
-    * Add Matches repo. -> DOING ...
+    * Add Matches repo. -> DONE
     * Add Rankings repo.
 * Write the unit tests for the services methods.
 * Write the Services
