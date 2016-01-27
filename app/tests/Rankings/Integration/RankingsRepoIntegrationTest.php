@@ -42,5 +42,56 @@ class RankingsRepoIntegrationTest extends \TestCase
     {
         $this->assertTrue(true);
     }
+
+    /**
+     * Tests if the add rankings works 
+     * correclty.
+     */
+    public function testRepoAddRankingsAdditionSuccess()
+    {
+        $this->markTestIncomplete('write me');
+    }
+
+    /**
+     * Tests if the update rankings works 
+     * correclty.
+     */
+    public function testRepoUpdateRankingsUpdateSuccess()
+    {
+        $this->markTestIncomplete('write me');
+    }
+
+    /**
+     * Tests if the update rankings throws 
+     * a ModelNotFoundException when
+     * appropriated.
+     *
+     * @expectedException Illuminate\Database\Eloquent\ModelNotFoundException
+     */
+    public function testRepoUpdateRankingsUpdateFailure()
+    {
+        $this->markTestIncomplete('write me');
+    }
+
+    /**
+     * Tests if the remove rankings works
+     * correclty.
+     */
+    public function testRepoRemoveRankingRemovalSuccess()
+    {
+        $this->markTestIncomplete('write me');
+    }
+
+    /**
+     * Tests if the remove rankings throws
+     * a ModelNotFoundException when an
+     * invalid rank id is passed.
+     *
+     * @expectedException Illuminate\Database\Eloquent\ModelNotFoundException
+     */
+    public function testRepoRemoveRankingRemovalSuccess()
+    {
+        $this->markTestIncomplete('write me');
+    }
 }
 
