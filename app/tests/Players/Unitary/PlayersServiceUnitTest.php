@@ -3,6 +3,7 @@
 namespace Tests\Players\Unitary;
 
 use \Mockery as m;
+use App\Services\Players\PlayersService;
 
 class PlayersServiceUnitTest extends \TestCase
 {
