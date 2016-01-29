@@ -52,7 +52,10 @@ class PlayersService
         $nickname
     ) {
         $user = $this->usersRepo->getUser($userID);
-        return null;
+        return $this->playersRepo->addPlayer(
+            $user,
+            $nickname
+        );
     }
 }
 

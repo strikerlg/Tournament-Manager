@@ -63,26 +63,9 @@ class PlayersServiceUnitTest extends \TestCase
 
     /**
      * Tests if the service add Player calls
-     * the user repo getUser method.
-     */
-    public function testAddPlayerGetUserCalled()
-    {
-        $userID = 1;
-        $this->fakeUsersRepo
-            ->shouldReceive('getUser')
-            ->with($userID)
-            ->once();
-        $this->service->addPlayer(
-            $userID,
-            'nickname'
-        );
-    }
-
-    /**
-     * Tests if the service add Player calls
      * the players repo AddPlayer method.
      */
-    public function testAddPlayerRepoAddMethodCalled()
+    public function testAddPlayerWithExpectedMethodFlow()
     {
         $userID = 1;
         $fakeUser = m::mock(
@@ -96,10 +79,14 @@ class PlayersServiceUnitTest extends \TestCase
             ->with($userID)
             ->once()
             ->andReturn($fakeUser);
-        $this->fakeUserRepo
+        $this->fakePlayersRepo
             ->shouldReceive('addPlayer')
-            ->with($fakeUser)
-            ->with('nickname')
+            ->withArgs(
+                array(
+                    m::type('App\\Models\\User'), 
+                    'nickname',
+                )
+            )
             ->once()
             ->andReturn($fakePlayer);
         $player = $this->service->addPlayer(
