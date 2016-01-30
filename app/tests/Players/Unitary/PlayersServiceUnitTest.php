@@ -156,14 +156,14 @@ class PlayersServiceUnitTest extends \TestCase
                 array($tournamentID)
             )
             ->once()
-            ->andReturn($fakeTournament)
+            ->andReturn($fakeTournament);
         $this->fakePlayersRepo
             ->shouldReceive('deletePlayers')
             ->withArgs(
                 array(m::type('App\\Models\\Tournament'))
             )
             ->once()
-            ->andReturn(true)
+            ->andReturn(true);
         $result = $this->service->deletePlayers(
             $tournamentID
         );

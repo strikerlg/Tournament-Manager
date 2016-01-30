@@ -87,5 +87,27 @@ class PlayersService
             $tournament
         );
     }
+
+    /**
+     * Deletes all the players of a
+     * given tournament.
+     *
+     * @param int $tournamentID
+     *
+     * @throws Illuminate\Database\Eloquent\ModelNotFoundException
+     *
+     * @return boolean
+     */
+    public function deletePlayers(
+        $tournamentID
+    ) {
+        $tournament = $this->tournamentsRepo->getTournament(
+            $tournamentID
+        );
+        // TODO: Get the logged Administrator
+        return $this->playersRepo->deletePlayers(
+            $tournament
+        );
+    }
 }
 
