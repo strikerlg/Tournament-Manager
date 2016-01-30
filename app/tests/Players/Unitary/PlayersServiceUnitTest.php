@@ -98,5 +98,37 @@ class PlayersServiceUnitTest extends \TestCase
             $fakePlayer
         );
     }
+
+    /**
+     * Tests the GetCount method on the Players
+     * service for a given Tournament.
+     */
+    public function testServiceGetCountWithExpectedMethodFlow()
+    {
+        $count = 10;
+        $tournamentID = 1;
+        $fakeTournament = m::mock(
+            'App\\Models\\Tournament'
+        );
+        $this->fakeTournamentsRepo
+            ->shouldReceive('getTournament')
+            ->withArgs(array($tournamentID))
+            ->once()
+            ->andReturn($fakeTournament);
+        $this->fakePlayersRepo
+            ->shouldReceive('getCount')
+            ->withArgs(
+                array(m::type('App\\Models\\Tournament'))
+            )
+            ->once()
+            ->andReturn($tournamentID);
+        $returnedCount = $this->service->getPlayersCount(
+            $tournamentID
+        );
+        $this->assertEquals(
+            $count,
+            $returnedCount
+        );
+    }
 }
 
