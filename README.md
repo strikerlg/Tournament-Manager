@@ -23,7 +23,7 @@
 * Install PHP-Lumen. -> DONE
 * Write the migrations inside PHP-Lumen. -> DONE
 * Manage tests folder structure. -> DOING ...
-* Add testDummy factories for the model classes. -> DOING ...
+* Add testDummy factories for the model classes.
     * Add factories for the User model. -> DONE
     * Add factories for the Player model. -> DONE
     * Add factories for the Administrator model. -> DONE
@@ -31,7 +31,7 @@
     * Add factories for the Tournament model. -> DONE
     * Add factories for the Match model. -> DONE
     * Add factories for the Rankings model. -> DONE
-* Write integration tests for the repositories. -> DOING ...
+* Write integration tests for the repositories.
     * Add tests for the users repository. -> DONE
     * Add tests for the players repository. -> DONE
     * Add tests for the administrators repository. -> DONE
@@ -39,7 +39,7 @@
     * Add tests for the tournaments repository. -> DONE
     * Add tests for the matches repository. -> DONE
     * Add tests for the rankings repository. -> DONE
-* Write model classes. -> DOING ...
+* Write model classes.
     * Add User model. -> DONE
     * Add Player model. -> DONE
     * Add Administrator model. -> DONE
@@ -47,7 +47,7 @@
     * Add Tournament model. -> DONE
     * Add Match model. -> DONE
     * Add Rankings model. -> DONE
-* Write the repositories. -> DOING ...
+* Write the repositories.
     * Add Users repo. -> DONE
     * Add Players repo. -> DONE
     * Add Administrators repo. -> DONE
@@ -55,13 +55,22 @@
     * Add tournaments repo. -> DONE
     * Add Matches repo. -> DONE
     * Add Rankings repo. -> DONE
-* Write the unit tests for the services methods.
-* Write the Services
-    * Add Players Service.
-    * Add Administrators Service.
-    * Add Games Service.
+* Write the unit tests for the services methods. -> DOING ... 
+    * Add the Players Service unit test -> DOING ...
+    * Add the Tournaments Service unit test.
+    * Add the Matches Service unit test.
+    * Add the Rankings Service unit test.
+    * Add the Swiss Service unit test.
+* Write the Services -> DOING ...
+    * Add Players Service. DOING ...
     * Add Tournaments Service.
     * Add Matches Service.
     * Add Rankings Service.
+    * Add Swiss Service.
+* Add Admin validation through Auth facade.
+    * Test this functionality with unitary tests.
+    * Add the validation code. 
+* Add soft delete to the Models.
 * Write the functional tests for the controller methods.
+* Add the Routes.
 * Write the controllers.
