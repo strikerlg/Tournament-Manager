@@ -3,7 +3,7 @@
 namespace Tests\Tournaments\Unitary;
 
 use \Mockery as m;
-use App\Services\TournamentsService;
+use App\Services\Tournaments\TournamentsService;
 
 class TournamentsServiceUnitTest extends \TestCase
 {
@@ -26,7 +26,7 @@ class TournamentsServiceUnitTest extends \TestCase
         $this->fakeTournamentsRepo = m::mock(
             'App\\Repositories\\Tournaments\\ITournamentsRepository'
         );
-        $service = new TournamentsService(
+        $this->service = new TournamentsService(
             $this->fakeTournamentsRepo
         );
     }
@@ -37,6 +37,39 @@ class TournamentsServiceUnitTest extends \TestCase
     public function testIsWorking()
     {
         $this->assertTrue(true);
+    }
+
+    /**
+     * Tests if the service's add tournament
+     * works as supposed.
+     */
+    public function testServiceAddTournamentRepoCalled()
+    {
+        $name = 'tournament name';
+        $fakeTournament = m::mock(
+            'App\\Models\\Tournament'
+        );
+        $this->fakeTournamentsRepo
+            ->shouldReceive('addTournament')
+            ->withArgs([
+                // TODO: Add the admin type here.
+                $name,
+                m::type('\Carbon\Carbon'),
+                m::type('\Carbon\Carbon'),
+                false,
+            ])
+            ->once()
+            ->andReturn($fakeTournament);
+        $tournament = $this->service->addTournament(
+            $name,
+            Carbon::now(),
+            Carbon::tomorrow(),
+            false
+        );
+        $this->assertEquals(
+            $tournament,
+            $fakeTournament
+        );
     }
 }
 
