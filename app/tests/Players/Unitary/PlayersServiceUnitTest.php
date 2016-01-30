@@ -139,5 +139,35 @@ class PlayersServiceUnitTest extends \TestCase
             $returnedCount
         );
     }
+
+    /**
+     * Tests if the delete players method
+     * interacts and works properly.
+     */
+    public function testServiceDeletePlayersWithExpectedMethodFlow()
+    {
+        $tournamentID = 1;
+        $fakeTournament = m::mock(
+            'App\\Models\\Tournament'
+        );
+        $this->fakeTournamentsRepo
+            ->shouldReceive('getTournament')
+            ->withArgs(
+                array($tournamentID)
+            )
+            ->once()
+            ->andReturn($fakeTournament)
+        $this->fakePlayersRepo
+            ->shouldReceive('deletePlayers')
+            ->withArgs(
+                array(m::type('App\\Models\\Tournament'))
+            )
+            ->once()
+            ->andReturn(true)
+        $result = $this->service->deletePlayers(
+            $tournamentID
+        );
+        $this->assertTrue($result);
+    }
 }
 
