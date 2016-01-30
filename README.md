@@ -57,12 +57,14 @@
     * Add Rankings repo. -> DONE
 * Write the unit tests for the services methods. -> DOING ... 
     * Add the Players Service unit test -> DONE
+    * Add The Administrator Service unit test.
     * Add the Tournaments Service unit test. -> DOING ...
     * Add the Matches Service unit test.
     * Add the Rankings Service unit test.
     * Add the Swiss Service unit test.
 * Write the Services -> DOING ...
     * Add Players Service. -> DONE
+    * Add Administrators Service. 
     * Add Tournaments Service. -> DOING ...
     * Add Matches Service.
     * Add Rankings Service.
@@ -70,6 +72,7 @@
 * Add Admin validation through Auth facade.
     * Test this functionality with unitary tests.
     * Add the validation code. 
+* Add a Facade for the Administrators service.
 * Add soft delete to the Models.
 * Write the functional tests for the controller methods.
 * Add the Routes.

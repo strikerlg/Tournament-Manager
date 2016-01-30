@@ -52,7 +52,7 @@ class TournamentsServiceUnitTest extends \TestCase
         $this->fakeTournamentsRepo
             ->shouldReceive('addTournament')
             ->withArgs([
-                // TODO: Add the admin type here.
+                m::type('App\\Models\\Administrator'),
                 $name,
                 m::type('\Carbon\Carbon'),
                 m::type('\Carbon\Carbon'),
@@ -62,8 +62,8 @@ class TournamentsServiceUnitTest extends \TestCase
             ->andReturn($fakeTournament);
         $tournament = $this->service->addTournament(
             $name,
-            Carbon::now(),
-            Carbon::tomorrow(),
+            \Carbon\Carbon::now(),
+            \Carbon\Carbon::tomorrow(),
             false
         );
         $this->assertEquals(
