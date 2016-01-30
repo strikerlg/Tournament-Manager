@@ -4,6 +4,7 @@ namespace App\Services\Players;
 
 use App\Repositories\Users\IUsersRepository;
 use App\Repositories\Players\IPlayersRepository;
+use App\Repositories\Tournaments\ITournamentsRepository;
 
 /**
  * Players Service implementation.
@@ -21,19 +22,27 @@ class PlayersService
     protected $usersRepo;
 
     /**
+     * @var ITournamentsRepository
+     */
+    protected $tournamentsRepo;
+
+    /**
      * Constructor.
      *
      * @param IUsersRepository $usersRepo
      * @param IPlayersRepository $playersRepo
+     * @param ITournamentsRepository $tournamentsRepo
      *
      * @return PlayersService
      */
     public function __construct(
         IUsersRepository $usersRepo,
-        IPlayersRepository $playersRepo
+        IPlayersRepository $playersRepo,
+        ITournamentsRepository $tournamentsRepo
     ) {
         $this->usersRepo = $usersRepo;
         $this->playersRepo = $playersRepo;
+        $this->tournamentsRepo = $tournamentsRepo;
     }
 
     /**
@@ -55,6 +64,27 @@ class PlayersService
         return $this->playersRepo->addPlayer(
             $user,
             $nickname
+        );
+    }
+
+    /**
+     * Gets the players count of a
+     * given tournament.
+     *
+     * @param int $tournamentID
+     *
+     * @throws Illuminate\Database\Eloquent\ModelNotFoundException
+     *
+     * @return int
+     */
+    public function getPlayersCount(
+        $tournamentID
+    ) {
+        $tournament = $this->tournamentsRepo->getTournament(
+            $tournamentID
+        );
+        return $this->playersRepo->getCount(
+            $tournament
         );
     }
 }

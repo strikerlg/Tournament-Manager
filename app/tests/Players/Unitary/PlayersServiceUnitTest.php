@@ -23,6 +23,11 @@ class PlayersServiceUnitTest extends \TestCase
     private $fakePlayersRepo;
 
     /**
+     * @var Mockery
+     */
+    private $fakeTournamentsRepo;
+
+    /**
      * Setup method.
      */
     public function setup()
@@ -30,14 +35,18 @@ class PlayersServiceUnitTest extends \TestCase
         parent::setup();
 
         $this->fakeUsersRepo = m::mock(
-            'App\\Repositories\\Users\\UsersRepository'
+            'App\\Repositories\\Users\\IUsersRepository'
         );
         $this->fakePlayersRepo = m::mock(
-            'App\\Repositories\\Players\\PlayersRepository'
+            'App\\Repositories\\Players\\IPlayersRepository'
+        );
+        $this->fakeTournamentsRepo = m::mock(
+            'App\\Repositories\\Tournaments\\ITournamentsRepository'
         );
         $this->service = new PlayersService(
             $this->fakeUsersRepo,
-            $this->fakePlayersRepo
+            $this->fakePlayersRepo,
+            $this->fakeTournamentsRepo
         );
     }
 
@@ -121,7 +130,7 @@ class PlayersServiceUnitTest extends \TestCase
                 array(m::type('App\\Models\\Tournament'))
             )
             ->once()
-            ->andReturn($tournamentID);
+            ->andReturn($count);
         $returnedCount = $this->service->getPlayersCount(
             $tournamentID
         );
