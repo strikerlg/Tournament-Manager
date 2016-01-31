@@ -21,7 +21,7 @@ class TournamentsService
     }
 
     /**
-     * Adds a new tournament
+     * Adds a new tournament.
      *
      * @param string $name
      * @param Carbon $begin
@@ -42,6 +42,22 @@ class TournamentsService
             $begin,
             $finish,
             $hasFinished
+        );
+    }
+
+    /**
+     * Removes a tournament.
+     *
+     * @param string $name
+     *
+     * @return boolean
+     */
+    public function removeTournament(
+        $name
+    ) {
+        return $this->repo->removeTournament(
+            \Admin::getLogged(),
+            $name
         );
     }
 }
