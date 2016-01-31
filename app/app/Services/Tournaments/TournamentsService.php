@@ -37,6 +37,7 @@ class TournamentsService
         $hasFinished = false
     ) {
         return $this->repo->addTournament(
+            \Admin::getLogged(),
             $name,
             $begin,
             $finish,
