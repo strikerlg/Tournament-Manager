@@ -32,11 +32,7 @@ class AdministratorsServiceUnitTest extends \TestCase
         $this->fakeAdministratorsRepo = m::mock(
             'App\\Repositories\\Administrators\\IAdministratorsRepository'
         );
-        $this->fakeUsersRepo = m::mock(
-            'App\\Repositories\\Users\\IUsersRepository'
-        );
         $this->service = new AdministratorsService(
-            $this->fakeUsersRepo,
             $this->fakeAdministratorsRepo
         );
     }
