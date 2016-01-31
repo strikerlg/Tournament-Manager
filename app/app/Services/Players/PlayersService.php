@@ -133,5 +133,26 @@ class PlayersService
             $playerID
         );
     }
+
+    /**
+     * Gets all the players from a given
+     * Tournament.
+     *
+     * @param int $tournamentID
+     *
+     * @throws Illuminate\Database\Eloquent\ModelNotFoundException
+     *
+     * @return boolean
+     */
+    public function getPlayers(
+        $tournamentID
+    ) {
+        $tournament = $this->tournamentsRepo->getTournament(
+            $tournamentID
+        );
+        return $this->playersRepo->getAllPlayers(
+            $tournament
+        );
+    }
 }
 

@@ -223,7 +223,7 @@ class PlayersServiceUnitTest extends \TestCase
             ->once()
             ->andReturn($fakeTournament);
         $this->fakePlayersRepo
-            ->shouldReceive('getPlayers')
+            ->shouldReceive('getAllPlayers')
             ->withArgs([
                 m::type('App\\Models\\Tournament'),
             ])
