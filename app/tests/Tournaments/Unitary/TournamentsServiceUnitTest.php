@@ -46,9 +46,15 @@ class TournamentsServiceUnitTest extends \TestCase
     public function testServiceAddTournamentRepoCalled()
     {
         $name = 'tournament name';
+        $fakeAdmin = m::mock(
+            'App\\Models\\Administrator'
+        );
         $fakeTournament = m::mock(
             'App\\Models\\Tournament'
         );
+        \Admin::shouldReceive('getLogged')
+            ->once()
+            ->andReturn($fakeAdmin);
         $this->fakeTournamentsRepo
             ->shouldReceive('addTournament')
             ->withArgs([
