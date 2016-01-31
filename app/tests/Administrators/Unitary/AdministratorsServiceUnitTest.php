@@ -70,6 +70,5 @@ class AdministratorsServiceUnitTest extends \TestCase
         $admin = $this->service->getLogged();
         $this->assertEquals($fakeAdmin, $admin);
     }
-
 }
 

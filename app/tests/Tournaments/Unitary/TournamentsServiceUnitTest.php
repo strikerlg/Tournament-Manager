@@ -77,5 +77,32 @@ class TournamentsServiceUnitTest extends \TestCase
             $fakeTournament
         );
     }
+
+    /**
+     * Tests if the delete tournament executes
+     * the expected interactions.
+     */
+    public function testServiceRemoveTournamentRepoCalled()
+    {
+        $fakeAdmin = m::mock(
+            'App\\Models\\Administrator'
+        );
+        \Admin::shouldReceive('getLogged')
+            ->once()
+            ->andReturn($fakeAdmin);
+        $tournamentName = 'tournament name';
+        $this->fakeTournamentsRepo
+            ->shouldReceive('removeTournament')
+            ->withArgs([
+                $fakeAdmin,
+                $tournamentName,
+            ])
+            ->once()
+            ->andReturn(true);
+        $result = $this->service->removeTournament(
+            $tournamentName
+        );
+        $this->assertTrue($result);
+    }
 }
 
