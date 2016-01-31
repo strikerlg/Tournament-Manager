@@ -201,5 +201,39 @@ class PlayersServiceUnitTest extends \TestCase
         );
         $this->assertTrue($result);
     }
+
+    /**
+     * Tests if the getPlayers method
+     * has the expected interactions.
+     */
+    public function testServiceGetPlayersWithExpectedFlow()
+    {
+        $tournamentID = 1;
+        $fakeTournament = m::mock(
+            'App\\Models\\Tournament'
+        );
+        $fakePlayers = [
+            m::mock(
+                'App\\Models\\Player'
+            ),
+        ];
+        $this->fakeTournamentsRepo
+            ->shouldReceive('getTournament')
+            ->withArgs([$tournamentID])
+            ->once()
+            ->andReturn($fakeTournament);
+        $this->fakePlayersRepo
+            ->shouldReceive('getPlayers')
+            ->withArgs([
+                m::type('App\\Models\\Tournament'),
+            ])
+            ->once()
+            ->andReturn($fakePlayers);
+        $players = $this->service->getPlayers($tournamentID);
+        $this->assertEquals(
+            $players,
+            $fakePlayers
+        );
+    }
 }
 
