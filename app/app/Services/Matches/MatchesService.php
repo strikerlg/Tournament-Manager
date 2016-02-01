@@ -38,7 +38,7 @@ class MatchesService
 
     /**
      * Adds a new match into the desired
-     * Organization.
+     * Tournament.
      *
      * @param int $tournamentID
      * @param int $firstPlayerID
@@ -80,7 +80,7 @@ class MatchesService
 
     /**
      * Updates an existing match into the desired
-     * Organization.
+     * Tournament.
      *
      * @param int $matchID
      * @param int $firstPlayerID
@@ -131,6 +131,23 @@ class MatchesService
             $begin,
             $finish,
             $hasEnded
+        );
+    }
+
+    /**
+     * Removes an existing match from the specified
+     * Tournament.
+     *
+     * @param int $matchID
+     *
+     * @return boolean
+     */
+    public function removeMatch(
+        $matchID
+    ) {
+        return $this->repo->removeMatch(
+            \Admin::getLogged(),
+            $matchID
         );
     }
 }
