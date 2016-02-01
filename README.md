@@ -69,10 +69,14 @@
     * Add Matches Service. -> DONE
     * Add Rankings Service. -> DONE
     * Add Swiss Service.
+* Refactor existing admin dependencies on the models, repositories and services.
+* Add Admin dependency to the admin related methods on the repositories.
+* Add Admin Validation on the admin related services.
+* Add getModel method on the repositories.
 * Add Admin Auth validation Middleware.
     * Test this functionality with unitary tests.
     * Add the validation code. 
-* Add a Facade for the Administrators service.
+* Add a Facade for the Administrators service. -> DONE
 * Add soft delete to the Models.
 * Write the functional tests for the controller methods.
 * Add the Routes.
