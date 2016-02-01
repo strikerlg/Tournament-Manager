@@ -157,10 +157,10 @@ class MatchesServiceUnitTest extends \TestCase
             ->shouldReceive('getPlayer')
             ->once()
             ->andReturn($fakeWinner);
-        $this->fakeTournamentsRepo
+        $this->fakeMatchesRepo
             ->shouldReceive('updateMatch')
             ->withArgs([
-                m::type('App\\Models\\Tournament'),
+                m::type('App\\Models\\Administrator'),
                 $matchID,
                 m::any(),
                 m::any(),
