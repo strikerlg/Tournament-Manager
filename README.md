@@ -59,15 +59,15 @@
     * Add the Players Service unit test -> DONE
     * Add The Administrator Service unit test. -> DONE
     * Add the Tournaments Service unit test. -> DONE
-    * Add the Matches Service unit test.
-    * Add the Rankings Service unit test.
+    * Add the Matches Service unit test. -> DONE
+    * Add the Rankings Service unit test. -> DONE
     * Add the Swiss Service unit test.
 * Write the Services -> DOING ...
     * Add Players Service. -> DONE
     * Add Administrators Service. -> DONE
     * Add Tournaments Service. -> DONE
-    * Add Matches Service.
-    * Add Rankings Service.
+    * Add Matches Service. -> DONE
+    * Add Rankings Service. -> DONE
     * Add Swiss Service.
 * Add Admin Auth validation Middleware.
     * Test this functionality with unitary tests.
