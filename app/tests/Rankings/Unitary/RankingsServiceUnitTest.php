@@ -160,5 +160,30 @@ class RankingsServiceUnitTest extends \TestCase
             $fakeRanking
         );
     }
+
+    /**
+     * Tests if the remove ranking works
+     * interacted as expected.
+     */
+    public function testServiceRemoveRankingInteractsCorrectly()
+    {
+        $rankingID = 1;
+        $fakeAdmin = m::mock(
+            'App\\Models\\Administrator'
+        );
+        \Admin::shouldReceive('getLogged')
+            ->once()
+            ->andReturn($fakeAdmin);
+        $this->fakeRankingsRepo
+            ->shouldReceive('removeRanking')
+            ->withArgs([
+                m::type('App\\Models\\Administrator'),
+                $rankingID,
+            ])
+            ->once()
+            ->andReturn(true);
+        $result = $this->service->removeRanking($rankingID);
+        $this->assertTrue($result);
+    }
 }
 
