@@ -97,14 +97,14 @@ class RankingsServiceUnitTest extends \TestCase
             ])
             ->once()
             ->andReturn($fakeRanking);
-        $match = $this->service->addMatch(
+        $ranking = $this->service->addRanking(
             $tournamentID,
             $playerID,
             $score
         );
         $this->assertEquals(
-            $match,
-            $fakeMatch
+            $ranking,
+            $fakeRanking
         );
     }
 }
