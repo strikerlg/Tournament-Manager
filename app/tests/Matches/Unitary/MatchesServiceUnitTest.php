@@ -182,5 +182,30 @@ class MatchesServiceUnitTest extends \TestCase
         );
         $this->assertEquals($match, $fakeMatch);
     }
+
+    /**
+     * Tests if the delete match method
+     * Interacts and works as expected.
+     */
+    public function testServiceRemoveMatchInteractsCorrectly()
+    {
+        $matchID = 1;
+        $fakeAdmin = m::mock(
+            'App\\Models\\Administrator'
+        );
+        \Admin::shouldReceive('getLogged')
+            ->once()
+            ->andReturn($fakeAdmin);
+        $this->fakeMatchesRepo
+            ->shouldReceive('removeMatch')
+            ->withArgs([
+                m::type('App\\Models\\Administrator'),
+                $matchID,
+            ])
+            ->once()
+            ->andReturn(true);
+        $result = $this->service->removeMatch($matchID);
+        $this->assertTrue($result);
+    }
 }
 
