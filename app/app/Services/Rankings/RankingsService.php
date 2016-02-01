@@ -103,5 +103,21 @@ class RankingsService
             $player
         );
     }
+
+    /**
+     * Removes the specified ranking.
+     *
+     * @param $rankingID
+     *
+     * @return boolean
+     */
+    public function removeRanking(
+        $rankingID
+    ) {
+        return $this->repo->removeRanking(
+            \Admin::getLogged(),
+            $rankingID
+        );
+    }
 }
 
