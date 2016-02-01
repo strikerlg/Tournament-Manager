@@ -2,7 +2,7 @@
 
 namespace Tests\Rankings\Unitary;
 
-use App\Services\RankingsService;
+use App\Services\Rankings\RankingsService;
 use \Mockery as m;
 
 class RankingsServiceUnitTest extends \TestCase
