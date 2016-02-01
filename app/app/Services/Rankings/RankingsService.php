@@ -64,5 +64,44 @@ class RankingsService
             $score
         );
     }
+
+    /**
+     * Updates a Ranking into
+     * the provided tournament.
+     *
+     * @param int $rankingID
+     * @param int $score
+     * @param int $tournamentID
+     * @param int $playerID
+     *
+     * @return Ranking
+     */
+    public function updateRanking(
+        $rankingID,
+        $score = 0,
+        $tournamentID = null,
+        $playerID = null
+    ) {
+        $player = null;
+        $tournament = null;
+
+        if ($playerID) {
+            $player = $this->playersRepo->getPlayer(
+                $playerID
+            );
+        }
+        if ($tournamentID) {
+            $tournament = $this->tournamentsRepo->getTournament(
+                $tournamentID
+            );
+        }
+
+        return $this->repo->updateRanking(
+            $rankingID,
+            $score,
+            $tournament,
+            $player
+        );
+    }
 }
 
