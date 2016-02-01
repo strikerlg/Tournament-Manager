@@ -41,7 +41,7 @@ class MatchesServiceUnitTest extends \TestCase
             'App\\Repositories\\Tournaments\\ITournamentsRepository'
         );
         $this->fakePlayersRepo = m::mock(
-            'App\\Repositories\\Players\\IPlayerRepository'
+            'App\\Repositories\\Players\\IPlayersRepository'
         );
         $this->service = new MatchesService(
             $this->fakeMatchesRepo,
@@ -96,11 +96,14 @@ class MatchesServiceUnitTest extends \TestCase
                 'getPlayer' => $firstFakePlayer,
                 'getPlayer' => $secondFakePlayer,
             ])
-            ->with(m::type('integer'))
+            ->withArgs([
+                m::type('App\\Models\\Tournament'),
+                m::type('int'),
+            ])
             ->twice();
         $this->fakeMatchesRepo
             ->shouldReceive('addMatch')
-            ->with([
+            ->withArgs([
                 m::type('App\\Models\\Administrator'),
                 m::type('App\\Models\\Tournament'),
                 m::type('App\\Models\\Player'),
