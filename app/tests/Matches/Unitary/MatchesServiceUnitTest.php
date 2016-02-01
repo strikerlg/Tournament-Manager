@@ -125,5 +125,62 @@ class MatchesServiceUnitTest extends \TestCase
             $fakeMatch
         );
     }
+
+    /**
+     * Tests if the update Match method
+     * Interacts and works as expected.
+     */
+    public function testServiceUpdateMatchInteractsCorreclty()
+    {
+        $matchID = 1;
+        $tournamentID = 1;
+        $winnerID = 2;
+        $hasEnded = true;
+
+        $fakeAdmin = m::mock(
+            'App\\Models\\Administrator'
+        );
+        $fakeMatch = m::mock(
+            'App\\Models\\Match'
+        );
+        $fakeTournament = m::mock(
+            'App\\Models\\Tournament'
+        );
+        $fakeWinner = m::mock(
+            'App\\Models\\Player'
+        );
+
+        \Admin::shouldReceive('getLogged')
+            ->once()
+            ->andReturn($fakeAdmin);
+        $this->fakePlayersRepo
+            ->shouldReceive('getPlayer')
+            ->once()
+            ->andReturn($fakeWinner);
+        $this->fakeTournamentsRepo
+            ->shouldReceive('updateMatch')
+            ->withArgs([
+                m::type('App\\Models\\Tournament'),
+                $matchID,
+                m::any(),
+                m::any(),
+                m::type('App\\Models\\Player'),
+                m::any(),
+                m::any(),
+                $hasEnded,
+            ])
+            ->once()
+            ->andReturn($fakeMatch);
+        $match = $this->service->updateMatch(
+            $matchID,
+            null,
+            null,
+            $fakeWinner,
+            null,
+            null,
+            $hasEnded
+        );
+        $this->assertEquals($match, $fakeMatch);
+    }
 }
 
