@@ -2,8 +2,45 @@
 
 namespace Tests\Swiss\Unitary;
 
+use App\Services\Swiss\SwissService;
+use \Mockery as m;
+
 class SwissServiceUnitTest extends \TestCase
 {
+    /**
+     * @var Mockery
+     */
+    protected $fakePlayersService;
+
+    /**
+     * @var Mockery
+     */
+    protected $fakeMatchesService;
+
+    /**
+     * @var SwissService
+     */
+    protected $service;
+
+    /**
+     * Setup method.
+     */
+    public function setup()
+    {
+        parent::setup();
+
+        $this->fakePlayersService = m::mock(
+            'App\\Services\\Players\\PlayersService'
+        );
+        $this->fakeMatchesService = m::mock(
+            'App\\Services\\Matches\\MatchesService'
+        );
+        $this->service = new SwissService(
+            $this->fakePlayersService,
+            $this->fakeMatchesService
+        );
+    }
+
     /**
      * Basic is working test.
      */
@@ -35,7 +72,11 @@ class SwissServiceUnitTest extends \TestCase
         $this->fakeMatchesService
             ->shouldReceive('addMatch')
             ->withArgs([
-                
+                m::type('int'),
+                m::type('int'),
+                m::type('int'),
+                m::type('\Carbon\Carbon'),
+                m::type('\Carbon\Carbon'),
             ])
             ->times($numberOfPlayers / 2)
             ->andReturnNull($fakeStaticMatch);
