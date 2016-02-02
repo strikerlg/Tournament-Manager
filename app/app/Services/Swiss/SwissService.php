@@ -76,7 +76,9 @@ class SwissService
         $players
     ) {
         $pairings = [];
-        while(count($players) > 0) {
+
+        $i = count($players);
+        while($i > 0) {
 
             $randomElements = array_rand($players, 2);
             $keys = array_keys($randomElements);
@@ -86,6 +88,8 @@ class SwissService
 
             $currentPair = array_values($randomElements);
             $pairings[] = $currentPair;
+
+            $i -= 2;
         }
         return $pairings;
     }

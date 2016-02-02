@@ -13,7 +13,13 @@ if (! function_exists('getFakePlayers')) {
     function getFakePlayers(
         $count = 1
     ) {
-        return [];
+        $fakePlayers = [];
+        for($i = 0; $i < $count; $i++) {
+            $fakePlayers[] = m::mock(
+                'App\\Models\\Player'
+            );
+        }
+        return $fakePlayers;
     }
 }
 

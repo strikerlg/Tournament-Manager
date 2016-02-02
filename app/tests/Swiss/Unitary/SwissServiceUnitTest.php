@@ -63,7 +63,6 @@ class SwissServiceUnitTest extends \TestCase
         $fakeStaticMatch = m::mock(
             'App\\Models\\Match'
         );
-
         $this->fakePlayersService
             ->shouldReceive('getPlayers')
             ->with($tournamentID)
