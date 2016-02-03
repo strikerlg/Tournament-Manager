@@ -119,7 +119,6 @@ class SwissServiceUnitTest extends \TestCase
             ->andReturn($fakePlayers);
         $this->fakeMatchesService
             ->shouldReceive('addMatch')
-            //->times(
             ->times($numberOfMatches)
             ->andReturn($fakeStaticMatch);
         $this->service->pairings(1);
@@ -131,7 +130,19 @@ class SwissServiceUnitTest extends \TestCase
      */
     public function testServiceRoundsCountCorrectValueReturned()
     {
-        $this->markTestIncomplete('not written');
+        $tournamentID = 1;
+        $playersCount = 33;
+        $expectedRoundsCount = 5;
+
+        $this->fakePlayersService
+            ->shouldReceive('getPlayersCount')
+            ->with($tournamentID)
+            ->andReturn($playersCount);
+        $result = $this->service->roundsCount($tournamentID);
+        $this->assertEquals(
+            $result,
+            $expectedRoundsCount
+        );
     }
 }
 
