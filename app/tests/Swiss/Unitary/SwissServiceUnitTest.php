@@ -42,6 +42,18 @@ class SwissServiceUnitTest extends \TestCase
     }
 
     /**
+     * Teardown method.
+     */
+    public function teardown()
+    {
+        $this->fakePlayersService = null;
+        $this->fakeMatchesService = null;
+        $this->service = null;
+
+        parent::teardown();
+    }
+
+    /**
      * Basic is working test.
      */
     public function testIsWorking()
@@ -78,7 +90,7 @@ class SwissServiceUnitTest extends \TestCase
                 m::type('\Carbon\Carbon'),
             ])
             ->times($numberOfPlayers / 2)
-            ->andReturnNull($fakeStaticMatch);
+            ->andReturn($fakeStaticMatch);
         $pairings = $this->service->pairings($tournamentID);
         $this->assertInternalType(
             'array',
@@ -94,7 +106,23 @@ class SwissServiceUnitTest extends \TestCase
      */
     public function testServicePairingsWithByeRegistered()
     {
-        $this->markTestIncomplete('not written');
+        $numberOfPlayers = 11;
+        $numberOfMatches = intval(
+            floor($numberOfPlayers / 2) + $numberOfPlayers % 2
+        );
+        $fakeStaticMatch = m::mock(
+            'App\\Models\\Match'
+        );
+        $fakePlayers = getFakePlayers($numberOfPlayers);
+        $this->fakePlayersService
+            ->shouldReceive('getPlayers')
+            ->andReturn($fakePlayers);
+        $this->fakeMatchesService
+            ->shouldReceive('addMatch')
+            //->times(
+            ->times($numberOfMatches)
+            ->andReturn($fakeStaticMatch);
+        $this->service->pairings(1);
     }
 
     /**
