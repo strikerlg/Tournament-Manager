@@ -65,6 +65,22 @@ class SwissService
     }
 
     /**
+     * Calculates the number of rounds
+     * given a number of players.
+     *
+     * @param int $tournamentID
+     *
+     * @return int
+     */
+    public function roundsCount($tournamentID)
+    {
+        $playersCount = $this->playersService->getPlayersCount(
+            $tournamentID
+        );
+        return floor(log($playersCount, 2));
+    }
+
+    /**
      * Generates the pairings with random
      * Players.
      *
