@@ -86,5 +86,24 @@ class SwissServiceUnitTest extends \TestCase
         );
         $this->assertCount(5, $pairings);
     }
+
+    /**
+     * Tests if the pairings method generates
+     * a bye match when an odd number of
+     * players is provided.
+     */
+    public function testServicePairingsWithByeRegistered()
+    {
+        $this->markTestIncomplete('not written');
+    }
+
+    /**
+     * Tests if the roundsCount method returns
+     * the expected number.
+     */
+    public function testServiceRoundsCountCorrectValueReturned()
+    {
+        $this->markTestIncomplete('not written');
+    }
 }
 
