@@ -48,6 +48,9 @@ class SwissService
         \Carbon\Carbon $begin = null,
         \Carbon\Carbon $finish = null
     ) {
+        // TODO: Get the players based on their ranking score.
+        // TODO: Iterate through all score ranges generating
+        // matches for each one.
         $players = $this->playersService->getPlayers(
             $tournamentID
         );
