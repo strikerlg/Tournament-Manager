@@ -100,8 +100,9 @@ class SwissService
         $pairings = [];
         $numberOfRounds = $this->roundsCount($tournamentID);
 
+        // TODO: Refactor this code.
         for($i = 0; $i < $numberOfRounds; $i++) {
-            
+
             if (! array_key_exists($i, $rankedPlayers)) {
                 continue;
             }
@@ -112,13 +113,21 @@ class SwissService
                 $randomElements = [];
 
                 if (count($playersForRank) > 1) {
-                    $randomElements = array_rand(
-                        $playersForRank,
-                        2
+                    $randomIndexes = array_values(
+                        array_rand(
+                            $playersForRank,
+                            2
+                        )
                     );
-                    $keys = array_keys($randomElements);
-                    unset($playersForRank[$keys[0]]);
-                    unset($playersForRank[$keys[1]]);
+                    $randomElements = array_map(
+                        function($val) use ($playersForRank) {
+                            return $playersForRank[$val];
+                        },
+                        $randomIndexes
+                    );
+                    unset($playersForRank[$randomIndexes[0]]);
+                    unset($playersForRank[$randomIndexes[1]]);
+
                 } else if (count($playersForRank) == 1) {
                     $randomElements[] = array_shift($playersForRank);
                 }
@@ -159,10 +168,12 @@ class SwissService
 
         $matches = [];
         foreach($pairings as $pair) {
+            $firstPlayerID = $pair[0]->id;
+            $secondPlayerID = isset($pair[1]) ? $pair[1]->id : null;
             $currentMatch = $this->matchesService->addMatch(
                 $tournamentID,
-                $pair[0],
-                $pair[1],
+                $firstPlayerID,
+                $secondPlayerID,
                 $begin,
                 $finish
             );

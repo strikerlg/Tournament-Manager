@@ -118,7 +118,7 @@ class SwissServiceUnitTest extends \TestCase
             ->withArgs([
                 m::type('int'),
                 m::type('int'),
-                m::type('int'),
+                m::any(),
                 m::type('\Carbon\Carbon'),
                 m::type('\Carbon\Carbon'),
             ])

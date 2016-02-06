@@ -15,9 +15,15 @@ if (! function_exists('getFakePlayers')) {
     ) {
         $fakePlayers = [];
         for($i = 0; $i < $count; $i++) {
-            $fakePlayers[] = m::mock(
+            $currentFakePlayer = m::mock(
                 'App\\Models\\Player'
             );
+            $currentFakePlayer
+                ->shouldReceive('getAttribute')
+                ->with('id')
+                ->zeroOrMoreTimes()
+                ->andReturn($i);
+            $fakePlayers[] = $currentFakePlayer;
         }
         return $fakePlayers;
     }
