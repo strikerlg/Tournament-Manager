@@ -51,11 +51,12 @@ class SwissService
         // TODO: Get the players based on their ranking score.
         // TODO: Iterate through all score ranges generating
         // matches for each one.
-        $players = $this->playersService->getPlayers(
+        $players = $this->playersService->getRankedPlayers(
             $tournamentID
         );
         $pairings = $this->generatePairings(
-            $players
+            $players,
+            $tournamentID
         );
         $matches = $this->registerMatches(
             $pairings,
@@ -87,28 +88,46 @@ class SwissService
      * Generates the pairings with random
      * Players.
      *
-     * @param array $players
+     * @param array $rankedPlayers
+     * @param int $tournamentID
      *
      * @return array
      */
     private function generatePairings(
-        $players
+        $rankedPlayers,
+        $tournamentID
     ) {
         $pairings = [];
+        $numberOfRounds = $this->roundsCount($tournamentID);
 
-        $i = count($players);
-        while($i > 0) {
+        for($i = 0; $i < $numberOfRounds; $i++) {
+            
+            if (! array_key_exists($i, $rankedPlayers)) {
+                continue;
+            }
+            $playersForRank = $rankedPlayers[$i];
+            $internalIndex = count($playersForRank);
 
-            $randomElements = array_rand($players, 2);
-            $keys = array_keys($randomElements);
+            while($internalIndex > 0) {
+                $randomElements = [];
 
-            unset($players[$keys[0]]);
-            unset($players[$keys[1]]);
+                if (count($playersForRank) > 1) {
+                    $randomElements = array_rand(
+                        $playersForRank,
+                        2
+                    );
+                    $keys = array_keys($randomElements);
+                    unset($playersForRank[$keys[0]]);
+                    unset($playersForRank[$keys[1]]);
+                } else if (count($playersForRank) == 1) {
+                    $randomElements[] = array_shift($playersForRank);
+                }
 
-            $currentPair = array_values($randomElements);
-            $pairings[] = $currentPair;
+                $currentPair = array_values($randomElements);
+                $pairings[] = $currentPair;
 
-            $i -= 2;
+                $internalIndex -= 2;
+            }
         }
         return $pairings;
     }

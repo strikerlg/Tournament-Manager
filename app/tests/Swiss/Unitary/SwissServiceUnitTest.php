@@ -112,7 +112,7 @@ class SwissServiceUnitTest extends \TestCase
             ->shouldReceive('getRankedPlayers')
             ->with($tournamentID)
             ->once()
-            ->andReturn($fakePlayers);
+            ->andReturn($fakeRankedPlayers);
         $this->fakeMatchesService
             ->shouldReceive('addMatch')
             ->withArgs([
