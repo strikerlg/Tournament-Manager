@@ -61,15 +61,18 @@
     * Add the Tournaments Service unit test. -> DONE
     * Add the Matches Service unit test. -> DONE
     * Add the Rankings Service unit test. -> DONE
-    * Add the Swiss Service unit test.
+    * Add the Swiss Service unit test. -> DOING ...
 * Write the Services -> DOING ...
     * Add Players Service. -> DONE
     * Add Administrators Service. -> DONE
     * Add Tournaments Service. -> DONE
     * Add Matches Service. -> DONE
     * Add Rankings Service. -> DONE
-    * Add Swiss Service.
-* Add Helper file for the mockery related code.
+    * Add Swiss Service. -> DOING ...
+* Add Helper file for the mockery related code. -> DONE
+* Add General utils folder.
+* Add Util for generating pairings.
+* Add helper file for helper functions.
 * Refactor existing admin dependencies on the models, repositories and services.
 * Add Admin dependency to the admin related methods on the repositories.
 * Add Admin Validation on the admin related services.
