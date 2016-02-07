@@ -89,6 +89,8 @@ $app->register(App\Providers\TournamentsRepoServiceProvider::class);
 $app->register(App\Providers\MatchesRepoServiceProvider::class);
 $app->register(App\Providers\RankingsRepoServiceProvider::class);
 $app->register(App\Providers\AdministratorsServiceProvider::class);
+$app->register(App\Providers\PairingsServiceProvider::class);
+$app->register(App\Providers\SwissServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------
@@ -112,6 +114,18 @@ if (!class_exists('Admin')) {
     class_alias(
         'App\\Facades\\AdministratorsServiceFacade',
         'Admin'
+    );
+}
+if (!class_exists('Pairings')) {
+    class_alias(
+        'App\\Facades\\PairingsUtilFacade',
+        'Pairings'
+    );
+}
+if (!class_exists('Swiss')) {
+    class_alias(
+        'App\\Facades\\SwissServiceFacade',
+        'Swiss'
     );
 }
 
