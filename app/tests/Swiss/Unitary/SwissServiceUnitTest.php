@@ -92,27 +92,27 @@ class SwissServiceUnitTest extends \TestCase
         $numberOfPlayers = 18;
         $tournamentID = 1;
 
-        $fakeRankedPlayers = [
-            0 => getFakePlayers(9),
-            1 => getFakePlayers(4),
-            2 => getFakePlayers(5),
-            3 => getFakePlayers(3),
-        ];
+        $fakeRankedPlayers = [];
+        $fakePairings = getFakePairings(12);
+            
         $expectedMatchesCount = 12;
 
         $fakeStaticMatch = m::mock(
             'App\\Models\\Match'
         );
-        $this->fakePlayersService
-            ->shouldReceive('getPlayersCount')
-            ->with($tournamentID)
-            ->once()
-            ->andReturn($numberOfPlayers);
+
         $this->fakePlayersService
             ->shouldReceive('getRankedPlayers')
             ->with($tournamentID)
             ->once()
             ->andReturn($fakeRankedPlayers);
+        \Pairings::shouldReceive('ranked')
+            ->withArgs([
+                $fakeRankedPlayers,
+                $tournamentID
+            ])
+            ->once()
+            ->andReturn($fakePairings);
         $this->fakeMatchesService
             ->shouldReceive('addMatch')
             ->withArgs([
@@ -139,6 +139,7 @@ class SwissServiceUnitTest extends \TestCase
      */
     public function testServicePairingsWithByeRegistered()
     {
+        $this->markTestIncomplete('still needs to be written');
         $numberOfPlayers = 11;
         $numberOfMatches = intval(
             floor($numberOfPlayers / 2) + $numberOfPlayers % 2

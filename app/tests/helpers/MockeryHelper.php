@@ -14,7 +14,7 @@ if (! function_exists('getFakePlayers')) {
         $count = 1
     ) {
         $fakePlayers = [];
-        for($i = 0; $i < $count; $i++) {
+        for($index = 0; $index < $count; $index++) {
             $currentFakePlayer = m::mock(
                 'App\\Models\\Player'
             );
@@ -22,10 +22,29 @@ if (! function_exists('getFakePlayers')) {
                 ->shouldReceive('getAttribute')
                 ->with('id')
                 ->zeroOrMoreTimes()
-                ->andReturn($i);
+                ->andReturn($index * rand(1, 10));
             $fakePlayers[] = $currentFakePlayer;
         }
         return $fakePlayers;
+    }
+}
+
+if (! function_exists('getFakePairings')) {
+    /**
+     * Returns an array of fake pairings.
+     *
+     * @param int $count
+     *
+     * @return array
+     */
+    function getFakePairings(
+        $count = 1
+    ) {
+        $fakePairings = [];
+        for($index = 0; $index < $count; $index++) {
+            $fakePairings[] = getFakePlayers(2);
+        }
+        return $fakePairings;
     }
 }
 
