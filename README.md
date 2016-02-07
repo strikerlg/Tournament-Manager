@@ -70,8 +70,9 @@
     * Add Rankings Service. -> DONE
     * Add Swiss Service. -> DOING ...
 * Add Helper file for the mockery related code. -> DONE
+* Add Swiss Service provider and Facade accessor.
 * Add General utils folder.
-* Add Util for generating pairings.
+* Add PairingsHandler Util class.
 * Add helper file for helper functions.
 * Refactor existing admin dependencies on the models, repositories and services.
 * Add Admin dependency to the admin related methods on the repositories.
