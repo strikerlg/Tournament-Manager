@@ -51,9 +51,7 @@ class SwissService
         $rankedPlayers = $this->playersService->getRankedPlayers(
             $tournamentID
         );
-        // TODO: This should be a call to a service in charge
-        // of generating pairs.
-        $pairings = $this->getRankedPairings(
+        $pairings = \Pairings::ranked(
             $rankedPlayers,
             $tournamentID
         );
@@ -81,94 +79,6 @@ class SwissService
             $tournamentID
         );
         return floor(log($playersCount, 2));
-    }
-
-    /**
-     * Generates the pairings for each ranking interval
-     * with random Players for each ranking.
-     *
-     * @param array $rankedPlayers
-     * @param int $tournamentID
-     *
-     * @return array
-     */
-    private function getRankedPairings(
-        $rankedPlayers,
-        $tournamentID
-    ) {
-        $rankedPairings = [];
-        $numberOfRounds = $this->roundsCount($tournamentID);
-
-        for ($index = 0; $index < $numberOfRounds; $index++) {
-
-            if (! array_key_exists($index, $rankedPlayers)) {
-                continue;
-            }
-
-            $pairingsForRound = $this->getRandomPairings(
-                $rankedPlayers[$index]
-            );
-            $rankedPairings = array_merge(
-                $rankedPairings,
-                $pairingsForRound
-            );
-        }
-        return $rankedPairings;
-    }
-
-    /**
-     * Generates random pairings from a given
-     * set of players.
-     *
-     * @param array $players
-     *
-     * @return $array
-     */
-    private function getRandomPairings(
-        $players
-    ) {
-        $pairings = [];
-        $playersCount = count($players);
-
-        while($playersCount > 0) {
-            $pairings[] = $this->extractRandomPair($players);
-            $playersCount -= 2;
-        }
-        return $pairings;
-    }
-
-    /**
-     * Selects and removes a random pair
-     * from the given array.
-     *
-     * @param array $elements
-     *
-     * @return array
-     */
-    private function extractRandomPair(&$elements)
-    {
-        $desiredCount = count($elements) > 1 ? 2 : 1;
-        $randomIndexes = array_rand(
-            $elements,
-            $desiredCount
-        );
-        
-        if (! is_array($randomIndexes)) {
-            $randomIndexes = [$randomIndexes];
-        }
-
-        $randomPair = array_map(
-            function($index) use ($elements) {
-                return $elements[$index];
-            },
-            $randomIndexes
-        );
-
-        foreach($randomIndexes as $index) {
-            unset($elements[$index]);
-        }
-
-        return $randomPair;
     }
 
     /**
