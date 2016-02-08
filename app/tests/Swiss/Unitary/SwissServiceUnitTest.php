@@ -91,10 +91,7 @@ class SwissServiceUnitTest extends \TestCase
     {
         $numberOfPlayers = 18;
         $tournamentID = 1;
-
-        $fakeRankedPlayers = [];
         $fakePairings = getFakePairings(12);
-            
         $expectedMatchesCount = 12;
 
         $fakeStaticMatch = m::mock(
@@ -105,10 +102,10 @@ class SwissServiceUnitTest extends \TestCase
             ->shouldReceive('getRankedPlayers')
             ->with($tournamentID)
             ->once()
-            ->andReturn($fakeRankedPlayers);
+            ->andReturn([]);
         \Pairings::shouldReceive('ranked')
             ->withArgs([
-                $fakeRankedPlayers,
+                [],
                 $tournamentID
             ])
             ->once()
@@ -139,7 +136,7 @@ class SwissServiceUnitTest extends \TestCase
      */
     public function testServicePairingsWithByeRegistered()
     {
-        $this->markTestIncomplete('still needs to be written');
+        $tournamentID = 1;
         $numberOfPlayers = 11;
         $numberOfMatches = intval(
             floor($numberOfPlayers / 2) + $numberOfPlayers % 2
@@ -147,21 +144,26 @@ class SwissServiceUnitTest extends \TestCase
         $fakeStaticMatch = m::mock(
             'App\\Models\\Match'
         );
-        $fakePlayers = [
-            0 => getFakePlayers($numberOfPlayers),
-        ];
-        $this->fakePlayersService
-            ->shouldReceive('getPlayersCount')
-            ->once()
-            ->andReturn($numberOfPlayers);
+        $fakePairings = getFakePairings(
+            $numberOfMatches,
+            true
+        );
+
         $this->fakePlayersService
             ->shouldReceive('getRankedPlayers')
-            ->andReturn($fakePlayers);
+            ->andReturn([]);
+        \Pairings::shouldReceive('ranked')
+            ->withArgs([
+                [],
+                $tournamentID,
+            ])
+            ->once()
+            ->andReturn($fakePairings);
         $this->fakeMatchesService
             ->shouldReceive('addMatch')
             ->times($numberOfMatches)
             ->andReturn($fakeStaticMatch);
-        $this->service->pairings(1);
+        $this->service->pairings($tournamentID);
     }
 }
 

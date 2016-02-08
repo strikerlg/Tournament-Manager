@@ -38,11 +38,13 @@ if (! function_exists('getFakePairings')) {
      * @return array
      */
     function getFakePairings(
-        $count = 1
+        $count = 1,
+        $withByes = false
     ) {
         $fakePairings = [];
         for($index = 0; $index < $count; $index++) {
-            $fakePairings[] = getFakePlayers(2);
+            $playersCount = $withByes ? rand(1, 2) : 2;
+            $fakePairings[] = getFakePlayers($playersCount);
         }
         return $fakePairings;
     }
