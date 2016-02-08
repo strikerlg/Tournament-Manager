@@ -55,29 +55,29 @@
     * Add tournaments repo. -> DONE
     * Add Matches repo. -> DONE
     * Add Rankings repo. -> DONE
-* Write the unit tests for the services methods. -> DOING ... 
+* Write the unit tests for the services methods.
     * Add the Players Service unit test -> DONE
     * Add The Administrator Service unit test. -> DONE
     * Add the Tournaments Service unit test. -> DONE
     * Add the Matches Service unit test. -> DONE
     * Add the Rankings Service unit test. -> DONE
-    * Add the Swiss Service unit test. -> DOING ...
-* Write the Services -> DOING ...
+    * Add the Swiss Service unit test. -> DONE
+* Write the Services.
     * Add Players Service. -> DONE
     * Add Administrators Service. -> DONE
     * Add Tournaments Service. -> DONE
     * Add Matches Service. -> DONE
     * Add Rankings Service. -> DONE
-    * Add Swiss Service. -> DOING ...
+    * Add Swiss Service. -> DONE
 * Add Helper file for the mockery related code. -> DONE
-* Add Swiss Service provider and Facade accessor.
-* Add General utils folder.
-* Add PairingsHandler Util class.
+* Add Swiss Service provider and Facade accessor. -> DONE
+* Add General utils folder. -> DONE
+* Add PairingsHandler Util class. -> DONE
 * Add helper file for helper functions.
 * Refactor existing admin dependencies on the models, repositories and services.
 * Add Admin dependency to the admin related methods on the repositories.
 * Add Admin Validation on the admin related services.
-* Add getModel method on the repositories.
+* Add get method on the repositories.
 * Add Admin Auth validation Middleware.
     * Test this functionality with unitary tests.
     * Add the validation code. 
