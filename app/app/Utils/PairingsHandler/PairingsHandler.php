@@ -26,12 +26,12 @@ class PairingsHandler
 
         for ($index = 0; $index < $numberOfRounds; $index++) {
 
-            if (! array_key_exists($index, $rankedPlayers)) {
+            if (! array_key_exists($index, $players)) {
                 continue;
             }
 
             $pairingsForRound = $this->getRandomPairings(
-                $rankedPlayers[$index]
+                $players[$index]
             );
             $rankedPairings = array_merge(
                 $rankedPairings,
@@ -53,8 +53,8 @@ class PairingsHandler
         $players
     ) {
         $pairings = [];
-        $playersCount = count($players);
 
+        $playersCount = count($players);
         while($playersCount > 0) {
             $pairings[] = $this->extractRandomPair($players);
             $playersCount -= 2;
