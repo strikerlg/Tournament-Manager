@@ -13,6 +13,20 @@ class GamesRepository implements
     IRepository
 {
     /**
+     * Gets the desired model.
+     *
+     * @param $id
+     *
+     * @throws Illuminate\Database\Eloquent\ModelNotFoundException
+     *
+     * @return Model
+     */
+    public function get($id)
+    {
+        return Game::findOrFail($id);
+    }
+
+    /**
      * Adds a Game to the DB.
      *
      * @param str $name

@@ -16,6 +16,20 @@ class MatchesRepository implements
     IRepository
 {
     /**
+     * Gets the desired model.
+     *
+     * @param $id
+     *
+     * @throws Illuminate\Database\Eloquent\ModelNotFoundException
+     *
+     * @return Model
+     */
+    public function get($id)
+    {
+        return Match::findOrFail($id);
+    }
+
+    /**
      * Adds a new match into the DB.
      *
      * @param Administrator $admin

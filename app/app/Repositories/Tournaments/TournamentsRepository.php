@@ -15,6 +15,20 @@ class TournamentsRepository implements
     IRepository
 {
     /**
+     * Gets the desired model.
+     *
+     * @param $id
+     *
+     * @throws Illuminate\Database\Eloquent\ModelNotFoundException
+     *
+     * @return Model
+     */
+    public function get($id)
+    {
+        return Tournament::findOrFail($id);
+    }
+
+    /**
      * Adds a new Tournament into the DB.
      *
      * @param Administrator $admin

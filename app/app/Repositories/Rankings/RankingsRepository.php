@@ -18,6 +18,20 @@ class RankingsRepository implements
     IRepository
 {
     /**
+     * Gets the desired model.
+     *
+     * @param $id
+     *
+     * @throws Illuminate\Database\Eloquent\ModelNotFoundException
+     *
+     * @return Model
+     */
+    public function get($id)
+    {
+        return Ranking::findOrFail($id);
+    }
+
+    /**
      * Adds a new ranking for the passed
      * player in the passed tournament.
      *

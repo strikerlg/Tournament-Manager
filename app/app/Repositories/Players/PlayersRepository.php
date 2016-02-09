@@ -14,6 +14,20 @@ class PlayersRepository implements
     IRepository
 {
     /**
+     * Gets the desired model.
+     *
+     * @param $id
+     *
+     * @throws Illuminate\Database\Eloquent\ModelNotFoundException
+     *
+     * @return Model
+     */
+    public function get($id)
+    {
+        return Player::findOrFail($id);
+    }
+
+    /**
      * Adds a player into the DB.
      *
      * @param User $user

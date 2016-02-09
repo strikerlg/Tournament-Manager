@@ -14,6 +14,20 @@ class AdministratorsRepository implements
     IRepository
 {
     /**
+     * Gets the desired model.
+     *
+     * @param $id
+     *
+     * @throws Illuminate\Database\Eloquent\ModelNotFoundException
+     *
+     * @return Model
+     */
+    public function get($id)
+    {
+        return Administrator::findOrFail($id);
+    }
+
+    /**
      * Adds a new admin into the db.
      *
      * @param User $user

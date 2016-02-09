@@ -12,6 +12,19 @@ class UsersRepository implements
     IUsersRepository,
     IRepository
 {
+    /**
+     * Gets the desired model.
+     *
+     * @param $id
+     *
+     * @throws Illuminate\Database\Eloquent\ModelNotFoundException
+     *
+     * @return Model
+     */
+    public function get($id)
+    {
+        return User::findOrFail($id);
+    }
 
     /**
      * Adds an user into the DB
