@@ -187,7 +187,7 @@ class TournamentsRepoIntegrationTest extends \TestCase
             $player
         );
 
-        $result = $this->repo->dettachPlayer(
+        $result = $this->repo->detachPlayer(
             $admin,
             $tournament->name,
             $player
