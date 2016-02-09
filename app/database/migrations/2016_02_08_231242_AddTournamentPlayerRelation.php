@@ -22,7 +22,10 @@ class AddTournamentPlayerRelation extends Migration
             $table->foreign('player_id')
                 ->references('id')
                 ->on('players');
-            $table->timestamps();
+            $table->timestamp('created_at')
+                ->default(\Carbon\Carbon::now());
+            $table->timestamp('updated_at')
+                ->default(\Carbon\Carbon::now());
         });
     }
 
