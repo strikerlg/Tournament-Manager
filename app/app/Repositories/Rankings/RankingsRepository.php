@@ -32,6 +32,7 @@ class RankingsRepository implements IRankingsRepository
         $score = 0
     ) {
         $this->validateOwnership($admin, $tournament);
+        $this->validatePlayer($tournament, $player);
 
         $ranking = new Ranking;
         $ranking->player_id = $player->id;
@@ -114,6 +115,25 @@ class RankingsRepository implements IRankingsRepository
                 'The passed admin is not associated with the tournament'
             );
         }
+    }
+
+    /**
+     * Validates the Player and the
+     * Tournament relashionships
+     *
+     * @param Tournament $tournament
+     * @param Player $player
+     *
+     * @throws Illuminate\Database\Eloquent\ModelNotFoundException
+     */
+    private function validatePlayer(
+        Tournament $tournament,
+        Player $player
+    ) {
+        $tournament
+            ->players()
+            ->where('player_id', $player->id)
+            ->firstOrFail();
     }
 
 }

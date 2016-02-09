@@ -55,6 +55,8 @@ class RankingsRepoIntegrationTest extends \TestCase
         $player = Factory::create('App\\Models\\Player');
         $tournament = Factory::create('App\\Models\\Tournament');
         $admin = Administrator::find($tournament->created_by);
+        $tournament->players()->attach($player->id);
+        $tournament->save();
 
         $ranking = $this->repo->addRanking(
             $admin,
@@ -193,7 +195,7 @@ class RankingsRepoIntegrationTest extends \TestCase
      * Tests if the player validation works
      * as expected.
      *
-     * @expectedException Illuminate\Validation\ValidationException
+     * @expectedException Illuminate\Database\Eloquent\ModelNotFoundException
      */
     public function testTournamentPlayerValidation()
     {
