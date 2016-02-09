@@ -60,7 +60,7 @@ class RankingsRepository implements IRankingsRepository
     public function updateRanking(
         Administrator $admin,
         $rankingID,
-        $score,
+        $score
     ) {
         $ranking = Ranking::findOrFail($rankingID);
         $ranking->score = $score;

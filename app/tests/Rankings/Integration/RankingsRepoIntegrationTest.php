@@ -91,15 +91,14 @@ class RankingsRepoIntegrationTest extends \TestCase
     public function testRepoUpdateRankingsUpdateSuccess()
     {
         $ranking = Factory::create('App\\Models\\Ranking');
-        $tournament = $ranking->tournament;
-        $admin = Administrator::find($tournament->created_by);
+        $admin = Administrator::find(
+            $ranking->tournament->created_by
+        );
 
         $ranking = $this->repo->updateRanking(
             $admin,
             $ranking->id,
-            14,
-            Tournament::find($ranking->tournament_id),
-            Player::find($ranking->player_id)
+            14
         );
         $this->assertNotNull($ranking);
         $this->assertInstanceOf(
@@ -128,9 +127,7 @@ class RankingsRepoIntegrationTest extends \TestCase
         $ranking = $this->repo->updateRanking(
             $admin,
             1222,
-            123,
-            Factory::create('App\\Models\\Tournament'),
-            Factory::create('App\\Models\\Player')
+            123
         );
     }
 

@@ -47,7 +47,7 @@ interface IRankingsRepository
     public function updateRanking(
         Administrator $admin,
         $rankingID,
-        $score,
+        $score
     );
 
     /**
