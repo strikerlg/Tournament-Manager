@@ -28,6 +28,11 @@ class RankingsServiceUnitTest extends \TestCase
     protected $fakeTournamentsRepo;
 
     /**
+     * @var Mockery
+     */
+    protected $fakeAdministratorsRepository;
+
+    /**
      * Setup method.
      */
     public function setup()
@@ -42,10 +47,14 @@ class RankingsServiceUnitTest extends \TestCase
         $this->fakeTournamentsRepo = m::mock(
             'App\\Repositories\\Tournaments\\ITournamentsRepository'
         );
+        $this->fakeAdministratorsRepository = m::mock(
+            'App\\Repositories\\Administrators\\IAdministratorsRepository'
+        );
         $this->service = new RankingsService(
             $this->fakeRankingsRepo,
             $this->fakePlayersRepo,
-            $this->fakeTournamentsRepo
+            $this->fakeTournamentsRepo,
+            $this->fakeAdministratorsRepository
         );
     }
 
@@ -63,9 +72,11 @@ class RankingsServiceUnitTest extends \TestCase
      */
     public function testServiceAddRankingCorrectInteractions()
     {
+        $adminID = 1;
         $playerID = 1;
         $tournamentID = 1;
         $score = 0;
+        $fakeAdmin = m::mock('App\\Models\\Administrator');
 
         // TODO: Add administrator fake instance.
         $fakeTournament = m::mock(
@@ -78,6 +89,11 @@ class RankingsServiceUnitTest extends \TestCase
             'App\\Models\\Ranking'
         );
 
+        $this->fakeAdministratorsRepository
+            ->shouldReceive('get')
+            ->with($adminID)
+            ->once()
+            ->andReturn($fakeAdmin);
         $this->fakeTournamentsRepo
             ->shouldReceive('getTournament')
             ->with($tournamentID)
@@ -91,13 +107,16 @@ class RankingsServiceUnitTest extends \TestCase
         $this->fakeRankingsRepo
             ->shouldReceive('addRanking')
             ->withArgs([
+                m::type('App\\Models\\Administrator'),
                 m::type('App\\Models\\Player'),
                 m::type('App\\Models\\Tournament'),
                 $score,
             ])
             ->once()
             ->andReturn($fakeRanking);
+
         $ranking = $this->service->addRanking(
+            $adminID,
             $tournamentID,
             $playerID,
             $score
@@ -114,11 +133,15 @@ class RankingsServiceUnitTest extends \TestCase
      */
     public function testServiceUpdateRankingCorrectInteractions()
     {
+        $adminID = 1;
         $rankingID = 1;
         $newScore = 4;
         $tournamentID = 1;
         $playerID = 1;
 
+        $fakeAdmin = m::mock(
+            'App\\Models\\Administrator'
+        );
         $fakeTournament = m::mock(
             'App\\Models\\Tournament'
         );
@@ -129,6 +152,10 @@ class RankingsServiceUnitTest extends \TestCase
             'App\\Models\\Ranking'
         );
 
+        $this->fakeAdministratorsRepository
+            ->shouldReceive('get')
+            ->with($adminID)
+            ->andReturn($fakeAdmin);
         $this->fakeTournamentsRepo
             ->shouldReceive('getTournament')
             ->with($tournamentID)
@@ -142,6 +169,7 @@ class RankingsServiceUnitTest extends \TestCase
         $this->fakeRankingsRepo
             ->shouldReceive('updateRanking')
             ->withArgs([
+                m::type('App\\Models\\Administrator'),
                 $rankingID,
                 $newScore,
                 m::type('App\\Models\\Tournament'),
@@ -150,6 +178,7 @@ class RankingsServiceUnitTest extends \TestCase
             ->once()
             ->andReturn($fakeRanking);
         $ranking = $this->service->updateRanking(
+            $adminID,
             $rankingID,
             $newScore,
             $tournamentID,

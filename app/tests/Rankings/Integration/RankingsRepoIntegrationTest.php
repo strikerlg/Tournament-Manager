@@ -54,7 +54,10 @@ class RankingsRepoIntegrationTest extends \TestCase
     {
         $player = Factory::create('App\\Models\\Player');
         $tournament = Factory::create('App\\Models\\Tournament');
+        $admin = Administrator::find($tournament->created_by);
+
         $ranking = $this->repo->addRanking(
+            $admin,
             $player,
             $tournament,
             12
@@ -86,7 +89,11 @@ class RankingsRepoIntegrationTest extends \TestCase
     public function testRepoUpdateRankingsUpdateSuccess()
     {
         $ranking = Factory::create('App\\Models\\Ranking');
+        $tournament = $ranking->tournament;
+        $admin = Administrator::find($tournament->created_by);
+
         $ranking = $this->repo->updateRanking(
+            $admin,
             $ranking->id,
             14,
             Tournament::find($ranking->tournament_id),
@@ -115,7 +122,9 @@ class RankingsRepoIntegrationTest extends \TestCase
      */
     public function testRepoUpdateRankingsUpdateFailure()
     {
+        $admin = Factory::create('App\\Models\\Administrator');
         $ranking = $this->repo->updateRanking(
+            $admin,
             1222,
             123,
             Factory::create('App\\Models\\Tournament'),

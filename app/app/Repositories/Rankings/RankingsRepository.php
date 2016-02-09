@@ -91,5 +91,7 @@ class RankingsRepository implements IRankingsRepository
         return Ranking::findOrFail($rankingID)
             ->delete();
     }
+
+    // TODO: Add a validation method
 }
 

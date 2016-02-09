@@ -5,6 +5,7 @@ namespace App\Services\Rankings;
 use App\Repositories\Rankings\IRankingsRepository;
 use App\Repositories\Players\IPlayersRepository;
 use App\Repositories\Tournaments\ITournamentsRepository;
+use App\Repositories\Administrators\IAdministratorsRepository;
 
 class RankingsService
 {
@@ -14,14 +15,19 @@ class RankingsService
     protected $repo;
 
     /**
-     * @var IRankingsRepository
+     * @var IPlayersRepository
      */
     protected $playersRepo;
 
     /**
-     * @var IRankingsRepository
+     * @var ITournamentsRepository
      */
     protected $tournamentsRepo;
+
+    /**
+     * @var IAdministratorsRepository
+     */
+    protected $administratorsRepository;
 
     /**
      * Constructor.
@@ -29,17 +35,20 @@ class RankingsService
     public function __construct(
         IRankingsRepository $repo,
         IPlayersRepository $playersRepo,
-        ITournamentsRepository $tournamentsRepo
+        ITournamentsRepository $tournamentsRepo,
+        IAdministratorsRepository $administratorsRepository
     ) {
         $this->repo = $repo;
         $this->playersRepo = $playersRepo;
         $this->tournamentsRepo = $tournamentsRepo;
+        $this->administratorsRepository = $administratorsRepository;
     }
 
     /**
      * Adds a new Ranking into
      * the provided tournament.
      *
+     * @param int $adminID
      * @param int $playerID
      * @param int $tournamentID
      * @param int $score
@@ -47,11 +56,14 @@ class RankingsService
      * @return Ranking
      */
     public function addRanking(
+        $adminID,
         $playerID,
         $tournamentID,
         $score
     ) {
-        // TODO: Get Admin.
+        $admin = $this->administratorsRepository->get(
+            $adminID
+        );
         $player = $this->playersRepo->getPlayer(
             $playerID
         );
@@ -59,6 +71,7 @@ class RankingsService
             $tournamentID
         );
         return $this->repo->addRanking(
+            $admin,
             $player,
             $tournament,
             $score
@@ -69,6 +82,7 @@ class RankingsService
      * Updates a Ranking into
      * the provided tournament.
      *
+     * @param int $adminID
      * @param int $rankingID
      * @param int $score
      * @param int $tournamentID
@@ -77,11 +91,13 @@ class RankingsService
      * @return Ranking
      */
     public function updateRanking(
+        $adminID,
         $rankingID,
         $score = 0,
         $tournamentID = null,
         $playerID = null
     ) {
+        $admin = $this->administratorsRepository->get($adminID);
         $player = null;
         $tournament = null;
 
@@ -97,6 +113,7 @@ class RankingsService
         }
 
         return $this->repo->updateRanking(
+            $admin,
             $rankingID,
             $score,
             $tournament,
