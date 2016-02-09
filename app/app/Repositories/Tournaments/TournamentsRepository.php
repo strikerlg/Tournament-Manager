@@ -60,9 +60,7 @@ class TournamentsRepository implements ITournamentsRepository
         $has_ended = false,
         $newName = null
     ) {
-        $tournament = Tournament::where('name', $name)
-            ->where('created_by', $admin->id)
-            ->firstOrFail();
+        $tournament = $this->retrieveTournament($admin, $name);
 
         if ($newName)
             $tournament->name = $newName;
@@ -89,9 +87,7 @@ class TournamentsRepository implements ITournamentsRepository
         Administrator $admin,
         $name
     ) {
-        return Tournament::where('name', $name)
-            ->where('created_by', $admin->id)
-            ->firstOrFail()
+        return $this->retrieveTournament($admin, $name)
             ->delete();
     }
 
@@ -110,9 +106,7 @@ class TournamentsRepository implements ITournamentsRepository
         $name,
         Player $player
     ) {
-        Tournament::where('name', $name)
-            ->where('created_by', $admin->id)
-            ->firstOrFail()
+        $this->retrieveTournament($admin, $name)
             ->players()
             ->attach($player->id);
         return true;
@@ -133,12 +127,30 @@ class TournamentsRepository implements ITournamentsRepository
         $name,
         Player $player
     ) {
-        Tournament::where('name', $name)
-            ->where('created_by', $admin->id)
-            ->firstOrFail()
+        $this->retrieveTournament($admin, $name)
             ->players()
             ->detach($player->id);
         return true;
+    }
+
+    /**
+     * Method responsible for getting
+     * the desired tournament.
+     *
+     * @param Administrator $admin
+     * @param str $name
+     *
+     * @throws Illuminate\Database\Eloquent\ModelNotFoundException
+     *
+     * @return Tournament
+     */
+    private function retrieveTournament(
+        Administrator $admin,
+        $name
+    ) {
+        return Tournament::where('name', $name)
+            ->where('created_by', $admin->id)
+            ->firstOrFail();
     }
 }
 

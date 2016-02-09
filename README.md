@@ -73,10 +73,10 @@
 * Add Swiss Service provider and Facade accessor. -> DONE
 * Add General utils folder. -> DONE
 * Add PairingsHandler Util class. -> DONE
-* Refactor existing admin dependencies on the models, repositories and services.
+* Refactor existing admin dependencies on the models, repositories and services. -> DONE
 * Add New table for the tournamentPlayers. -> DONE
-* Add Admin dependency to the admin related methods on the repositories.
-* Add Admin Validation on the admin related services.
+* Add Admin dependency to the admin related methods on the repositories. -> DONE
+* Add Admin Validation on the admin related services. -> DONE
 * Add get method on the repositories.
 * Add a Facade for the Administrators service. -> DONE
 * Add soft delete to the Models.
