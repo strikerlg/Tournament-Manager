@@ -7,8 +7,10 @@ use App\Models\Tournament;
 use App\Models\Player;
 use App\Models\Ranking;
 
+use Illuminate\Validation\ValidationException;
+
 /**
- * Interface for the rankings repo.
+ * Implementation for the rankings repo.
  */
 class RankingsRepository implements IRankingsRepository
 {
@@ -29,6 +31,8 @@ class RankingsRepository implements IRankingsRepository
         Tournament $tournament,
         $score = 0
     ) {
+        $this->validateOwnership($admin, $tournament);
+
         $ranking = new Ranking;
         $ranking->player_id = $player->id;
         $ranking->tournament_id = $tournament->id;
@@ -92,6 +96,25 @@ class RankingsRepository implements IRankingsRepository
             ->delete();
     }
 
-    // TODO: Add a validation method
+    /**
+     * Validates the admin and the
+     * tournament relationships.
+     *
+     * @param Administrator $admin
+     * @param Tournament $tournament
+     *
+     * @throws Illuminate\Validation\ValidationException
+     */
+    private function validateOwnership(
+        Administrator $admin,
+        Tournament $tournament
+    ) {
+        if ($admin->id != $tournament->created_by) {
+            throw new ValidationException(
+                'The passed admin is not associated with the tournament'
+            );
+        }
+    }
+
 }
 

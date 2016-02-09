@@ -20,6 +20,8 @@ interface IRankingsRepository
      * @param Tournament $tournament
      * @param int $score
      *
+     * @throws Illuminate\Validation\ValidationException
+     *
      * @return Ranking
      */
     public function addRanking(
@@ -39,7 +41,8 @@ interface IRankingsRepository
      * @param Tournament $tournament
      * @param Player $player
      *
-     * @expectedException Illuminate\Database\Eloquent\ModelNotFoundException
+     * @throws Illuminate\Database\Eloquent\ModelNotFoundException
+     * @throws Illuminate\Validation\ValidationException
      *
      * @return Ranking
      */
@@ -57,7 +60,8 @@ interface IRankingsRepository
      * @param Administrator $admin
      * @param int $matchID
      *
-     * @expectedException Illuminate\Database\Eloquent\ModelNotFoundException
+     * @throws Illuminate\Database\Eloquent\ModelNotFoundException
+     * @throws Illuminate\Validation\ValidationException
      *
      * @return boolean
      */
