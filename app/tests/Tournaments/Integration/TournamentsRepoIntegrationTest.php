@@ -171,5 +171,29 @@ class TournamentsRepoIntegrationTest extends \TestCase
             'tournament_id' => $tournament->id,
         ]);
     }
+
+    /**
+     * Tests if the dettach player method
+     * works correctly.
+     */
+    public function testRepoDettachPlayerPlayerDettached()
+    {
+        $player = Factory::create('App\\Models\\Player');
+        $tournament = Factory::create('App\\Models\\Tournament');
+        $admin = Administrator::find($tournament->created_by);
+        $this->repo->attachPlayer(
+            $admin,
+            $tournament->name,
+            $player
+        );
+
+        $result = $this->repo->dettachPlayer(
+            $admin,
+            $tournament->name,
+            $player
+        );
+        $this->assertTrue($result);
+        $this->assertCount(0, $tournament->players);
+    }
 }
 
