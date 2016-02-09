@@ -2,13 +2,16 @@
 
 namespace App\Repositories\Administrators;
 
+use App\Repositories\IRepository;
 use App\Models\User;
 use App\Models\Administrator;
 
 /**
  * Administrators Repository implementation.
  */
-class AdministratorsRepository implements IAdministratorsRepository
+class AdministratorsRepository implements
+    IAdministratorsRepository,
+    IRepository
 {
     /**
      * Adds a new admin into the db.

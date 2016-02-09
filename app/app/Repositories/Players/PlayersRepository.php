@@ -2,13 +2,16 @@
 
 namespace App\Repositories\Players;
 
+use App\Repositories\IRepository;
 use App\Models\User;
 use App\Models\Player;
 
 /**
  * Implementation for the IPlayers repo.
  */
-class PlayersRepository implements IPlayersRepository
+class PlayersRepository implements
+    IPlayersRepository,
+    IRepository
 {
     /**
      * Adds a player into the DB.

@@ -2,12 +2,15 @@
 
 namespace App\Repositories\Users;
 
+use App\Repositories\IRepository;
 use App\Models\User;
 
 /**
  * Implementation of User repo.
  */
-class UsersRepository implements IUsersRepository
+class UsersRepository implements
+    IUsersRepository,
+    IRepository
 {
 
     /**

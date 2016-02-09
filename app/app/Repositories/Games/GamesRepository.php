@@ -2,12 +2,15 @@
 
 namespace App\Repositories\Games;
 
+use App\Repositories\IRepository;
 use App\Models\Game;
 
 /**
  * Implementation for the Games repo.
  */
-class GamesRepository
+class GamesRepository implements
+    IGamesRepository,
+    IRepository
 {
     /**
      * Adds a Game to the DB.

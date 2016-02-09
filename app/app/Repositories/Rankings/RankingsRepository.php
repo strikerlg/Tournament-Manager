@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Rankings;
 
+use App\Repositories\IRepository;
 use App\Models\Administrator;
 use App\Models\Tournament;
 use App\Models\Player;
@@ -12,7 +13,9 @@ use Illuminate\Validation\ValidationException;
 /**
  * Implementation for the rankings repo.
  */
-class RankingsRepository implements IRankingsRepository
+class RankingsRepository implements
+    IRankingsRepository,
+    IRepository
 {
     /**
      * Adds a new ranking for the passed

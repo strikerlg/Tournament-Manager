@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Tournaments;
 
+use App\Repositories\IRepository;
 use App\Models\Administrator;
 use App\Models\Tournament;
 use App\Models\Player;
@@ -9,7 +10,9 @@ use App\Models\Player;
 /**
  * Interface for the Tournament repo.
  */
-class TournamentsRepository implements ITournamentsRepository
+class TournamentsRepository implements
+    ITournamentsRepository,
+    IRepository
 {
     /**
      * Adds a new Tournament into the DB.

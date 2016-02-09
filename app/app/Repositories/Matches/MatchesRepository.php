@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Matches;
 
+use App\Repositories\IRepository;
 use App\Models\Administrator;
 use App\Models\Tournament;
 use App\Models\Player;
@@ -10,7 +11,9 @@ use App\Models\Match;
 /**
  * Implementation for the Matches repo.
  */
-class MatchesRepository implements IMatchesRepository
+class MatchesRepository implements
+    IMatchesRepository,
+    IRepository
 {
     /**
      * Adds a new match into the DB.
