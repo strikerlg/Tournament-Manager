@@ -12,7 +12,7 @@ class AddTournamentPlayerRelation extends Migration
      */
     public function up()
     {
-        Schema::create('tournament_matches', function(Blueprint $table) {
+        Schema::create('tournaments_players', function(Blueprint $table) {
             $table->increments('id');
             $table->integer('tournament_id');
             $table->foreign('tournament_id')
@@ -33,6 +33,6 @@ class AddTournamentPlayerRelation extends Migration
      */
     public function down()
     {
-        Schema::drop('tournament_matches');
+        Schema::drop('tournaments_players');
     }
 }

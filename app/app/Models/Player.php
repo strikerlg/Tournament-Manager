@@ -42,5 +42,20 @@ class Player extends Model
     {
         return $this->hasMany('App\\Models\\Match');
     }
+
+    /**
+     * Many to Many relationship with
+     * the Tournament model.
+     *
+     * @return Tournament
+     */
+    public function tournaments()
+    {
+        return $this->belongsToMany(
+            'App\\Models\\Tournament',
+            'tournaments_players'
+        );
+    }
+
 }
 
