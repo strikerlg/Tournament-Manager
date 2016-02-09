@@ -15,6 +15,7 @@ interface IRankingsRepository
      * Adds a new ranking for the passed
      * player in the passed tournament.
      *
+     * @param Administrator $admin
      * @param Player $player
      * @param Tournament $tournament
      * @param int $score
@@ -22,6 +23,7 @@ interface IRankingsRepository
      * @return Ranking
      */
     public function addRanking(
+        Administrator $admin,
         Player $player,
         Tournament $tournament,
         $score = 0
@@ -31,6 +33,7 @@ interface IRankingsRepository
      * Updates the existing ranking
      * passed.
      *
+     * @param Administrator $admin
      * @param int $rankingID
      * @param int $score
      * @param Tournament $tournament
@@ -41,6 +44,7 @@ interface IRankingsRepository
      * @return Ranking
      */
     public function updateRanking(
+        Administrator $admin,
         $rankingID,
         $score = null,
         Tournament $tournament = null,

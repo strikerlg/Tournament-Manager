@@ -78,11 +78,11 @@
 * Add Admin dependency to the admin related methods on the repositories.
 * Add Admin Validation on the admin related services.
 * Add get method on the repositories.
-* Add Admin Auth validation Middleware.
-    * Test this functionality with unitary tests.
-    * Add the validation code. 
 * Add a Facade for the Administrators service. -> DONE
 * Add soft delete to the Models.
 * Write the functional tests for the controller methods.
+* Add Admin Auth validation Middleware.
+    * Test this functionality with unitary tests.
+    * Add the validation code. 
 * Add the Routes.
 * Write the controllers.

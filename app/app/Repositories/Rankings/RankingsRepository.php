@@ -16,6 +16,7 @@ class RankingsRepository implements IRankingsRepository
      * Adds a new ranking for the passed
      * player in the passed tournament.
      *
+     * @param Administrator $admin
      * @param Player $player
      * @param Tournament $tournament
      * @param int $score
@@ -23,6 +24,7 @@ class RankingsRepository implements IRankingsRepository
      * @return Ranking
      */
     public function addRanking(
+        Administrator $admin,
         Player $player,
         Tournament $tournament,
         $score = 0
@@ -40,6 +42,7 @@ class RankingsRepository implements IRankingsRepository
      * Updates the existing ranking
      * passed.
      *
+     * @param Administrator $admin
      * @param int $rankingID
      * @param int $score
      * @param Tournament $tournament
@@ -50,6 +53,7 @@ class RankingsRepository implements IRankingsRepository
      * @return Ranking
      */
     public function updateRanking(
+        Administrator $admin,
         $rankingID,
         $score = null,
         Tournament $tournament = null,
