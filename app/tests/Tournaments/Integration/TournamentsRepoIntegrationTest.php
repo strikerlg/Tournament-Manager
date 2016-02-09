@@ -149,5 +149,27 @@ class TournamentsRepoIntegrationTest extends \TestCase
             'non existent name'
         );
     }
+
+    /**
+     * Tests if the attach player method
+     * works correctly.
+     */
+    public function testRepoAttachPlayerPlayerAttached()
+    {
+        $player = Factory::create('App\\Models\\Player');
+        $tournament = Factory::create('App\\Models\\Tournament');
+        $admin = Administrator::find($tournament->created_by);
+
+        $result = $this->repo->attachPlayer(
+            $admin,
+            $tournament->name,
+            $player
+        );
+        $this->assertTrue($result);
+        $this->seeInDatabase('tournaments_players', [
+            'player_id' => $player->id,
+            'tournament_id' => $tournament->id,
+        ]);
+    }
 }
 
