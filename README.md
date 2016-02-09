@@ -79,7 +79,7 @@
 * Add Admin Validation on the admin related services. -> DONE
 * Add get method on the repositories. -> DONE
 * Add a Facade for the Administrators service. -> DONE
-* Add soft delete to the Models.
+* Add soft delete to the Models. -> DONE
 * Write the functional tests for the controller methods.
 * Add Admin Auth validation Middleware.
     * Test this functionality with unitary tests.
