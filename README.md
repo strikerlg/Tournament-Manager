@@ -77,7 +77,7 @@
 * Add New table for the tournamentPlayers. -> DONE
 * Add Admin dependency to the admin related methods on the repositories. -> DONE
 * Add Admin Validation on the admin related services. -> DONE
-* Add get method on the repositories.
+* Add get method on the repositories. -> DONE
 * Add a Facade for the Administrators service. -> DONE
 * Add soft delete to the Models.
 * Write the functional tests for the controller methods.
