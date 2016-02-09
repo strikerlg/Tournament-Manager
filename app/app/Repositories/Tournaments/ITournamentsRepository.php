@@ -4,6 +4,7 @@ namespace App\Repositories\Tournaments;
 
 use App\Models\Administrator;
 use App\Models\Tournament;
+use App\Models\Player;
 
 /**
  * Interface for the Tournament repo.
@@ -62,5 +63,22 @@ interface ITournamentsRepository
         Administrator $admin,
         $name
     );
+
+    /**
+     * Attaches a new player into the
+     * tournament.
+     *
+     * @param $admin
+     * @param $name
+     * @param Player
+     *
+     * @return boolean
+     */
+    public function attachPlayer(
+        Administrator $admin,
+        $name,
+        Player $player
+    );
+
 }
 

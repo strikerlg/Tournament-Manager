@@ -4,6 +4,7 @@ namespace App\Repositories\Tournaments;
 
 use App\Models\Administrator;
 use App\Models\Tournament;
+use App\Models\Player;
 
 /**
  * Interface for the Tournament repo.
@@ -93,5 +94,29 @@ class TournamentsRepository implements ITournamentsRepository
             ->firstOrFail()
             ->delete();
     }
+
+    /**
+     * Attaches a new player into the
+     * tournament.
+     *
+     * @param $admin
+     * @param $name
+     * @param Player
+     *
+     * @return boolean
+     */
+    public function attachPlayer(
+        Administrator $admin,
+        $name,
+        Player $player
+    ) {
+        Tournament::where('name', $name)
+            ->where('created_by', $admin->id)
+            ->firstOrFail()
+            ->players()
+            ->attach($player->id);
+        return true;
+    }
+
 }
 
