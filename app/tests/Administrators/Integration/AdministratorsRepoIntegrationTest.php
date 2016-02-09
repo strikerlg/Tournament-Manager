@@ -14,7 +14,7 @@ class AdministratorsRepoIntegrationTest extends \TestCase
     /**
      * @var IAdministratorsRepository
      */
-    private $repo;
+    private $repository;
 
     /**
      * Setup method.
@@ -22,7 +22,7 @@ class AdministratorsRepoIntegrationTest extends \TestCase
     public function setup()
     {
         parent::setup();
-        $this->repo = $this->app->make(
+        $this->repository = $this->app->make(
             'App\\Repositories\\Administrators\\IAdministratorsRepository'
         );
     }
@@ -32,7 +32,7 @@ class AdministratorsRepoIntegrationTest extends \TestCase
      */
     public function teardown()
     {
-        $this->repo = null;
+        $this->repository = null;
         parent::teardown();
     }
 
@@ -51,7 +51,7 @@ class AdministratorsRepoIntegrationTest extends \TestCase
     public function testRepoAddAdminSuccessAddition()
     {
         $user = Factory::create('App\\Models\\User');
-        $admin = $this->repo->addAdministrator(
+        $admin = $this->repository->addAdministrator(
             $user,
             'testing nickname'
         );
@@ -79,7 +79,7 @@ class AdministratorsRepoIntegrationTest extends \TestCase
     public function testRepoRemoveAdminSuccessRemoval()
     {
         $admin = Factory::create('App\\Models\\Administrator');
-        $wasDeleted = $this->repo->removeAdministrator(
+        $wasDeleted = $this->repository->removeAdministrator(
             $admin->nickname
         );
         $this->assertTrue($wasDeleted);
@@ -96,7 +96,7 @@ class AdministratorsRepoIntegrationTest extends \TestCase
      */
     public function testRepoRemoveAdminFailureNotFound()
     {
-        $this->repo->removeAdministrator(
+        $this->repository->removeAdministrator(
             'testing not found'
         );
     }

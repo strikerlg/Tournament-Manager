@@ -16,7 +16,7 @@ class RankingsRepoIntegrationTest extends \TestCase
     /**
      * @var IRankingsRepository
      */
-    private $repo;
+    private $repository;
 
     /**
      * Setup method
@@ -24,7 +24,7 @@ class RankingsRepoIntegrationTest extends \TestCase
     public function setup()
     {
         parent::setup();
-        $this->repo = $this->app->make(
+        $this->repository = $this->app->make(
             'App\\Repositories\\Rankings\\IRankingsRepository'
         );
     }
@@ -34,7 +34,7 @@ class RankingsRepoIntegrationTest extends \TestCase
      */
     public function teardown()
     {
-        $this->repo = null;
+        $this->repotory = null;
         parent::teardown();
     }
 
@@ -58,7 +58,7 @@ class RankingsRepoIntegrationTest extends \TestCase
         $tournament->players()->attach($player->id);
         $tournament->save();
 
-        $ranking = $this->repo->addRanking(
+        $ranking = $this->repository->addRanking(
             $admin,
             $player,
             $tournament,
@@ -95,7 +95,7 @@ class RankingsRepoIntegrationTest extends \TestCase
             $ranking->tournament->created_by
         );
 
-        $ranking = $this->repo->updateRanking(
+        $ranking = $this->repository->updateRanking(
             $admin,
             $ranking->id,
             14
@@ -124,7 +124,7 @@ class RankingsRepoIntegrationTest extends \TestCase
     public function testRepoUpdateRankingsUpdateFailure()
     {
         $admin = Factory::create('App\\Models\\Administrator');
-        $ranking = $this->repo->updateRanking(
+        $ranking = $this->repository->updateRanking(
             $admin,
             1222,
             123
@@ -141,7 +141,7 @@ class RankingsRepoIntegrationTest extends \TestCase
         $admin = Administrator::find(
             Tournament::find($ranking->tournament_id)->created_by
         );
-        $result = $this->repo->removeRanking(
+        $result = $this->repository->removeRanking(
             $admin,
             $ranking->id
         );
@@ -162,7 +162,7 @@ class RankingsRepoIntegrationTest extends \TestCase
      */
     public function testRepoRemoveRankingRemovalFailure()
     {
-        $this->repo->removeRanking(
+        $this->repository->removeRanking(
             Factory::create('App\\Models\\Administrator'),
             '1233'
         );
@@ -180,7 +180,7 @@ class RankingsRepoIntegrationTest extends \TestCase
         $tournament = Factory::create('App\\Models\\Tournament');
         $player = Factory::create('App\\Models\\Player');
 
-        $this->repo->addRanking(
+        $this->repository->addRanking(
             $admin,
             $player,
             $tournament,
@@ -200,7 +200,7 @@ class RankingsRepoIntegrationTest extends \TestCase
         $admin = Administrator::find($tournament->created_by);
         $player = Factory::create('App\\Models\\Player');
 
-        $this->repo->addRanking(
+        $this->repository->addRanking(
             $admin,
             $player,
             $tournament,
@@ -219,7 +219,7 @@ class RankingsRepoIntegrationTest extends \TestCase
         $admin = Factory::create('App\\Models\\Administrator');
         $ranking = Factory::create('App\\Models\\Ranking');
 
-        $this->repo->updateRanking(
+        $this->repository->updateRanking(
             $admin,
             $ranking->id,
             0

@@ -13,7 +13,7 @@ class GamesRepoIntegrationTest extends \TestCase
     /**
      * @var IGamesRepository
      */
-    private $repo;
+    private $repository;
 
     /**
      * Setup method
@@ -21,7 +21,7 @@ class GamesRepoIntegrationTest extends \TestCase
     public function setup()
     {
         parent::setup();
-        $this->repo = $this->app->make(
+        $this->repository = $this->app->make(
             'App\\Repositories\\Games\\IGamesRepository'
         );
     }
@@ -49,7 +49,7 @@ class GamesRepoIntegrationTest extends \TestCase
      */
     public function testRepoAddGameAdditionSuccess()
     {
-        $game = $this->repo->addGame(
+        $game = $this->repository->addGame(
             'testing name'
         );
         $this->assertNotNull($game);
@@ -70,7 +70,7 @@ class GamesRepoIntegrationTest extends \TestCase
     public function testRepoRemoveGameRemovalSuccess()
     {
         $game = Factory::create('App\\Models\\Game');
-        $this->repo->removeGame($game->name);
+        $this->repository->removeGame($game->name);
         $this->assertNull(Game::find($game->id));
     }
 
@@ -83,7 +83,7 @@ class GamesRepoIntegrationTest extends \TestCase
      */
     public function testRepoRemoveGameNotFound()
     {
-        $this->repo->removeGame('test failure');
+        $this->repository->removeGame('test failure');
     }
 }
 

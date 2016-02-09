@@ -14,7 +14,7 @@ class TournamentsRepoIntegrationTest extends \TestCase
     /**
      * @var ITournamentsRepository
      */
-    private $repo;
+    private $repository;
 
     /**
      * Setup method
@@ -22,7 +22,7 @@ class TournamentsRepoIntegrationTest extends \TestCase
     public function setup()
     {
         parent::setup();
-        $this->repo = $this->app->make(
+        $this->repository = $this->app->make(
             'App\\Repositories\\Tournaments\\ITournamentsRepository'
         );
     }
@@ -32,7 +32,7 @@ class TournamentsRepoIntegrationTest extends \TestCase
      */
     public function teardown()
     {
-        $this->repo = null;
+        $this->repository = null;
         parent::teardown();
     }
 
@@ -50,7 +50,7 @@ class TournamentsRepoIntegrationTest extends \TestCase
     public function testAddTournamentAdditionSuccess()
     {
         $admin = Factory::create('App\\Models\\Administrator');
-        $tournament = $this->repo->addTournament(
+        $tournament = $this->repository->addTournament(
             $admin,
             'tournament name',
             \Carbon\Carbon::now(),
@@ -81,7 +81,7 @@ class TournamentsRepoIntegrationTest extends \TestCase
         $has_ended = true;
 
         $tournament = Factory::create('App\\Models\\Tournament');
-        $tournament = $this->repo->updateTournament(
+        $tournament = $this->repository->updateTournament(
             Administrator::find($tournament->created_by),
             $tournament->name,
             $beginDate,
@@ -108,7 +108,7 @@ class TournamentsRepoIntegrationTest extends \TestCase
     {
         $tournament = Factory::create('App\\Models\\Tournament');
 
-        $result = $this->repo->removeTournament(
+        $result = $this->repository->removeTournament(
             Administrator::find($tournament->created_by),
             $tournament->name
         );
@@ -128,7 +128,7 @@ class TournamentsRepoIntegrationTest extends \TestCase
     public function testRepoRemoveTournamentRemovalFailure()
     {
         $admin = Factory::create('App\\Models\\Administrator');
-        $this->repo->removeTournament(
+        $this->repository->removeTournament(
             $admin,
             'non existent name'
         );
@@ -144,7 +144,7 @@ class TournamentsRepoIntegrationTest extends \TestCase
     public function testRepoUpdateTournamentUpdateFailure()
     {
         $admin = Factory::create('App\\Models\\Administrator');
-        $this->repo->updateTournament(
+        $this->repository->updateTournament(
             $admin,
             'non existent name'
         );
@@ -160,7 +160,7 @@ class TournamentsRepoIntegrationTest extends \TestCase
         $tournament = Factory::create('App\\Models\\Tournament');
         $admin = Administrator::find($tournament->created_by);
 
-        $result = $this->repo->attachPlayer(
+        $result = $this->repository->attachPlayer(
             $admin,
             $tournament->name,
             $player
@@ -181,13 +181,13 @@ class TournamentsRepoIntegrationTest extends \TestCase
         $player = Factory::create('App\\Models\\Player');
         $tournament = Factory::create('App\\Models\\Tournament');
         $admin = Administrator::find($tournament->created_by);
-        $this->repo->attachPlayer(
+        $this->repository->attachPlayer(
             $admin,
             $tournament->name,
             $player
         );
 
-        $result = $this->repo->detachPlayer(
+        $result = $this->repository->detachPlayer(
             $admin,
             $tournament->name,
             $player

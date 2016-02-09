@@ -14,7 +14,7 @@ class PlayersRepoIntegrationTest extends \TestCase
     /**
      * @var IPlayerRepository
      */
-    private $repo;
+    private $repository;
 
     /**
      * Setup method
@@ -22,7 +22,7 @@ class PlayersRepoIntegrationTest extends \TestCase
     public function setup()
     {
         parent::setup();
-        $this->repo = $this->app->make(
+        $this->repository = $this->app->make(
             'App\\Repositories\\Players\\IPlayersRepository'
         );
     }
@@ -32,7 +32,7 @@ class PlayersRepoIntegrationTest extends \TestCase
      */
     public function teardown()
     {
-        $this->repo = null;
+        $this->repository = null;
         parent::teardown();
     }
 
@@ -50,7 +50,7 @@ class PlayersRepoIntegrationTest extends \TestCase
     public function testRepoAddPlayerSuccessAddition()
     {
         $user = Factory::create('App\\Models\\User');
-        $player = $this->repo->addPlayer(
+        $player = $this->repository->addPlayer(
             $user,
             'nickname'
         );
@@ -75,7 +75,7 @@ class PlayersRepoIntegrationTest extends \TestCase
     public function testRepoRemovePlayerSuccessRemoval()
     {
         $player = Factory::create('App\\Models\\Player');
-        $success = $this->repo->removePlayer(
+        $success = $this->repository->removePlayer(
             $player->nickname
         );
         $this->assertTrue(
@@ -93,7 +93,7 @@ class PlayersRepoIntegrationTest extends \TestCase
      */
     public function testRepoRemovePlayerFailureNotFound()
     {
-        $this->repo->removePlayer('test');
+        $this->repository->removePlayer('test');
     }
 }
 

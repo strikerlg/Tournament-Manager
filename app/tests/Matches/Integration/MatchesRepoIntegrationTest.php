@@ -14,7 +14,7 @@ class MatchesRepoIntegrationTest extends \TestCase
     /**
      * @var IMatchesRepository
      */
-    private $repo;
+    private $repository;
 
     /**
      * Setup method
@@ -22,7 +22,7 @@ class MatchesRepoIntegrationTest extends \TestCase
     public function setup()
     {
         parent::setup();
-        $this->repo = $this->app->make(
+        $this->repository = $this->app->make(
             'App\\Repositories\\Matches\\IMatchesRepository'
         );
     }
@@ -32,7 +32,7 @@ class MatchesRepoIntegrationTest extends \TestCase
      */
     public function teardown()
     {
-        $this->repo = null;
+        $this->repository = null;
         parent::teardown();
     }
 
@@ -56,7 +56,7 @@ class MatchesRepoIntegrationTest extends \TestCase
         $begin = \Carbon\Carbon::now();
         $finish = \Carbon\Carbon::tomorrow();
 
-        $match = $this->repo->addMatch(
+        $match = $this->repository->addMatch(
             $admin,
             $tournament,
             $firstPlayer,
@@ -95,7 +95,7 @@ class MatchesRepoIntegrationTest extends \TestCase
         $newBegin = \Carbon\Carbon::yesterday();
         $newFinish = \Carbon\Carbon::tomorrow();
 
-        $match = $this->repo->updateMatch(
+        $match = $this->repository->updateMatch(
             Administrator::find($match->created_by),
             $match->id,
             $newPlayer,
@@ -141,7 +141,7 @@ class MatchesRepoIntegrationTest extends \TestCase
      */
     public function testUpdateMatchUpdateFailure()
     {
-        $this->repo->updateMatch(
+        $this->repository->updateMatch(
             Factory::create('App\\Models\\Administrator'),
             23
         );
@@ -154,7 +154,7 @@ class MatchesRepoIntegrationTest extends \TestCase
     public function testRemoveMatchRemovalSuccess()
     {
         $match = Factory::create('App\\Models\\Match');
-        $result = $this->repo->removeMatch(
+        $result = $this->repository->removeMatch(
             Administrator::find($match->created_by),
             $match->id
         );
@@ -173,7 +173,7 @@ class MatchesRepoIntegrationTest extends \TestCase
      */
     public function testRemoveMatchRemovalFailure()
     {
-        $this->repo->removeMatch(
+        $this->repository->removeMatch(
             Factory::create('App\\Models\\Administrator'),
             123
         );

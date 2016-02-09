@@ -11,7 +11,7 @@ class UsersRepoIntegrationTest extends \TestCase
     /**
      * @var IUsersRepository
      */
-    private $repo = null;
+    private $repository = null;
 
     /**
      * Setup method
@@ -20,7 +20,7 @@ class UsersRepoIntegrationTest extends \TestCase
     {
         parent::setup();
 
-        $this->repo = $this->app->make(
+        $this->repository = $this->app->make(
             'App\Repositories\Users\IUsersRepository'
         );
     }
@@ -30,7 +30,7 @@ class UsersRepoIntegrationTest extends \TestCase
      */
     public function teardown()
     {
-        $this->repo = null;
+        $this->repository = null;
     }
 
     /**
@@ -46,7 +46,7 @@ class UsersRepoIntegrationTest extends \TestCase
      */
     public function testAddUserSuccess()
     {
-        $user = $this->repo->addUser(
+        $user = $this->repository->addUser(
             'user@mail.com',
             'user name',
             'pass'
