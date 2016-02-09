@@ -74,7 +74,7 @@
 * Add General utils folder. -> DONE
 * Add PairingsHandler Util class. -> DONE
 * Refactor existing admin dependencies on the models, repositories and services.
-* Add New table for the tournamentPlayers.
+* Add New table for the tournamentPlayers. -> DONE
 * Add Admin dependency to the admin related methods on the repositories.
 * Add Admin Validation on the admin related services.
 * Add get method on the repositories.
