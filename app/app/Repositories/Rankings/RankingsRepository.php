@@ -33,6 +33,7 @@ class RankingsRepository implements IRankingsRepository
     ) {
         $this->validateOwnership($admin, $tournament);
         $this->validatePlayer($tournament, $player);
+        // TODO: Check and return if ranking already exists.
 
         $ranking = new Ranking;
         $ranking->player_id = $player->id;
@@ -50,7 +51,6 @@ class RankingsRepository implements IRankingsRepository
      * @param Administrator $admin
      * @param int $rankingID
      * @param int $score
-     * @param Tournament $tournament
      * @param Player $player
      *
      * @expectedException Illuminate\Database\Eloquent\ModelNotFoundException
@@ -60,20 +60,10 @@ class RankingsRepository implements IRankingsRepository
     public function updateRanking(
         Administrator $admin,
         $rankingID,
-        $score = null,
-        Tournament $tournament = null,
-        Player $player = null
+        $score,
     ) {
         $ranking = Ranking::findOrFail($rankingID);
-        if ($score) {
-            $ranking->score = $score;
-        }
-        if ($tournament) {
-            $ranking->tournament_id = $tournament->id;
-        }
-        if ($player) {
-            $ranking->player_id = $player->id;
-        }
+        $ranking->score = $score;
         $ranking->save();
 
         return $ranking;

@@ -38,8 +38,6 @@ interface IRankingsRepository
      * @param Administrator $admin
      * @param int $rankingID
      * @param int $score
-     * @param Tournament $tournament
-     * @param Player $player
      *
      * @throws Illuminate\Database\Eloquent\ModelNotFoundException
      * @throws Illuminate\Validation\ValidationException
@@ -49,9 +47,7 @@ interface IRankingsRepository
     public function updateRanking(
         Administrator $admin,
         $rankingID,
-        $score = null,
-        Tournament $tournament = null,
-        Player $player = null
+        $score,
     );
 
     /**
