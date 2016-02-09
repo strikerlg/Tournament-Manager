@@ -168,5 +168,45 @@ class RankingsRepoIntegrationTest extends \TestCase
             '1233'
         );
     }
+
+    /**
+     * Tests if the admin validation works
+     * as expected.
+     *
+     * @expectedException Illuminate\Validation\ValidationException
+     */
+    public function testTournamentAdminValidation()
+    {
+        $admin = Factory::create('App\\Models\\Administrator');
+        $tournament = Factory::create('App\\Models\\Tournament');
+        $player = Factory::create('App\\Models\\Player');
+
+        $this->repo->addRanking(
+            $admin,
+            $player,
+            $tournament,
+            0
+        );
+    }
+
+    /**
+     * Tests if the player validation works
+     * as expected.
+     *
+     * @expectedException Illuminate\Validation\ValidationException
+     */
+    public function testTournamentPlayerValidation()
+    {
+        $tournament = Factory::create('App\\Models\\Tournament');
+        $admin = Administrator::find($tournament->created_by);
+        $player = Factory::create('App\\Models\\Player');
+
+        $this->repo->addRanking(
+            $admin,
+            $player,
+            $tournament,
+            0
+        );
+    }
 }
 
