@@ -80,5 +80,20 @@ interface ITournamentsRepository
         Player $player
     );
 
+    /**
+     * Detaches a player from the
+     * tournament.
+     *
+     * @param $admin
+     * @param $name
+     * @param Player
+     *
+     * @return boolean
+     */
+    public function detachPlayer(
+        Administrator $admin,
+        $name,
+        Player $player
+    );
 }
 

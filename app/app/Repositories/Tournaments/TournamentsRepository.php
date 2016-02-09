@@ -117,6 +117,28 @@ class TournamentsRepository implements ITournamentsRepository
             ->attach($player->id);
         return true;
     }
-
+  
+    /**
+     * Detaches a player from the
+     * tournament.
+     *
+     * @param $admin
+     * @param $name
+     * @param Player
+     *
+     * @return boolean
+     */
+    public function detachPlayer(
+        Administrator $admin,
+        $name,
+        Player $player
+    ) {
+        Tournament::where('name', $name)
+            ->where('created_by', $admin->id)
+            ->firstOrFail()
+            ->players()
+            ->detach($player->id);
+        return true;
+    }
 }
 
