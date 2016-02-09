@@ -62,7 +62,10 @@ class RankingsRepository implements IRankingsRepository
         $rankingID,
         $score
     ) {
-        $ranking = Ranking::findOrFail($rankingID);
+        $ranking = $this->retrieveRanking(
+            $admin,
+            $rankingID
+        );
         $ranking->score = $score;
         $ranking->save();
 
@@ -83,8 +86,11 @@ class RankingsRepository implements IRankingsRepository
         Administrator $admin,
         $rankingID
     ) {
-        return Ranking::findOrFail($rankingID)
-            ->delete();
+        $ranking = $this->retrieveRanking(
+            $admin,
+            $rankingID
+        );
+        return $ranking->delete();
     }
 
     /**
@@ -123,6 +129,31 @@ class RankingsRepository implements IRankingsRepository
         $tournament
             ->players()
             ->where('player_id', $player->id)
+            ->firstOrFail();
+    }
+
+    /**
+     * Retrieves the desired Ranking.
+     *
+     * @param Administrator $admin
+     * @param int $rankingID
+     *
+     * @throws Illuminate\Database\Eloquent\ModelNotFoundException
+     *
+     * @return Ranking
+     */
+    private function retrieveRanking(
+        Administrator $admin,
+        $rankingID
+    ) {
+        return Ranking::where('rankings.id', $rankingID)
+            ->join(
+                'tournaments',
+                'rankings.tournament_id',
+                '=',
+                'tournaments.id'
+            )
+            ->where('tournaments.created_by', $admin->id)
             ->firstOrFail();
     }
 

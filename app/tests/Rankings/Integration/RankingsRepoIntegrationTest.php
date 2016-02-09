@@ -207,5 +207,24 @@ class RankingsRepoIntegrationTest extends \TestCase
             0
         );
     }
+
+    /**
+     * Tests if the rankingID validation
+     * works as expected.
+     *
+     * @expectedException Illuminate\Database\Eloquent\ModelNotFoundException
+     */
+    public function testTournamentRankingIDValidation()
+    {
+        $admin = Factory::create('App\\Models\\Administrator');
+        $ranking = Factory::create('App\\Models\\Ranking');
+
+        $this->repo->updateRanking(
+            $admin,
+            $ranking->id,
+            0
+        );
+    }
+
 }
 
