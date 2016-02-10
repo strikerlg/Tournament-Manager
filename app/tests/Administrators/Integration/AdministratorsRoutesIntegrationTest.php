@@ -29,7 +29,7 @@ class AdministratorsRoutesIntegrationTest extends \TestCase
             'password_confirm' => '123456',
         ];
 
-        $response = $this->assertRequest(
+        $response = $this->assertOk(
             '/administrator/register',
             'POST',
             $adminData
