@@ -14,3 +14,12 @@
 $app->get('/', function () use ($app) {
     return $app->version();
 });
+
+$app->post('/register/player', function() {
+    return '=D';
+});
+
+$app->post('/register/administrator', [
+    'uses' => 'AdministratorsController@registerAdministrator',
+]);
+

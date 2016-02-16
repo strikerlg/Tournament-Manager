@@ -191,7 +191,7 @@ class TestCase extends Laravel\Lumen\Testing\TestCase
         );
 
         if ($response->getStatusCode() == 500) {
-            dump($response->getContent());
+            echo($response->getContent());
         }
 
         return $response;

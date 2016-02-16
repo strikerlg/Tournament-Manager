@@ -30,15 +30,15 @@ class AdministratorsRoutesIntegrationTest extends \TestCase
         ];
 
         $response = $this->assertOk(
-            '/administrator/register',
             'POST',
+            'register/administrator',
             $adminData
         );
 
         $this->assertNotNull($response->administrator);
 
         $this->seeInDatabase('administrators', [
-            'name' => 'owner'
+            'nickname' => 'owner'
         ]);
     }
 

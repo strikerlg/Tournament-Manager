@@ -2,7 +2,7 @@
 
 namespace Tests\Players\Integration;
 
-class PlayersRoutesIntegrationTest extends TestCase
+class PlayersRoutesIntegrationTest extends \TestCase
 {
     /**
      * Test is working.
@@ -26,8 +26,8 @@ class PlayersRoutesIntegrationTest extends TestCase
         ];
 
         $response = $this->assertOk(
-            '/player/register',
             'POST',
+            '/register/player',
             $playerData
         );
 
