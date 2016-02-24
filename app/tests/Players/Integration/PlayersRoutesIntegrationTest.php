@@ -33,7 +33,7 @@ class PlayersRoutesIntegrationTest extends \TestCase
 
         $this->assertNotNull($response->player);
         $this->seeInDatabase('players', [
-            'name' => 'player',
+            'nickname' => 'player',
         ]);
     }
 
